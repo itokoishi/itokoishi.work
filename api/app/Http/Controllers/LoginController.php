@@ -40,11 +40,11 @@ class LoginController extends CommonController
             $password === config('app.admin_auth_pass')) {
 
             $request->session()->put('admin_auth', true);
-            return redirect('/admin/reservation/list');
+            return redirect('/');
         }
 
         /* -- パスワード処理 ---------------------*/
         session()->flash('error', 'ID、パスワードが間違っています。');
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 }

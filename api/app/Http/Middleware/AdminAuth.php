@@ -21,7 +21,7 @@ class AdminAuth
         if ($request->session()->get('admin_auth')){
             return $next($request);
         }else{
-            return redirect('/admin/login');
+            return redirect('/login');
         }
     }
 }

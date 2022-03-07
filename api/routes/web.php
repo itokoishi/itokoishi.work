@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/login', LoginController::class);
-Route::resource('/login-out', LogoutController::class);
-Route::resource('/', IndexController::class);
+Route::resource('/log-out', LogoutController::class);
 
 Route::middleware(['admin_auth'])->group(function () {
-
+    Route::resource('/', IndexController::class);
+    Route::resource('/calender', CalenderController::class);
 });

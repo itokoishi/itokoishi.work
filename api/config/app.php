@@ -4,6 +4,27 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    /*-----------------------------------------------
+    独自環境設定
+    -----------------------------------------------*/
+    /* -- line ---------------------*/
+    'line_api_token'      => env('LINE_API_TOKEN', ''),
+    'line_group_id'       => env('LINE_GROUP_ID', ''),
+    'line_channel_secret' => env('LINE_CHANNEL_SECRET', ''),
+
+    /* --reservation_imap  ---------------------*/
+    'imap_host'           => env('IMAP_HOST', ''),
+    'imap_port'           => env('IMAP_PORT', ''),
+    'imap_protocol'       => env('IMAP_PROTOCOL', ''),
+    'imap_encryption'     => env('IMAP_ENCRYPTION', ''),
+    'imap_validate_cert'  => env('IMAP_VALIDATE_CERT', ''),
+    'imap_username'       => env('IMAP_USERNAME', ''),
+    'imap_password'       => env('IMAP_PASSWORD', ''),
+
+    /* -- admin auth ---------------------*/
+    'admin_auth_user'                 => env('ADMIN_AUTH_USER', ''),
+    'admin_auth_pass'                 => env('ADMIN_AUTH_PASS', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

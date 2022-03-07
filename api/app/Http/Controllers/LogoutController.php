@@ -16,6 +16,6 @@ class LogoutController extends CommonController
     public function index(Request $request): Redirector|Application|RedirectResponse
     {
         $request->session()->put('admin_auth', false);
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 }

@@ -95,9 +95,8 @@
     <nav id="menu">
         <ul>
             <li id="nav-header"></li>
-            <li>
-                <a href="/">トップ</a>
-            </li>
+            <li><a href="/">トップ</a></li>
+            <li><a href="/calender">カレンダー</a></li>
         </ul>
 
         <a href="/log-out" id="log-out">ログアウト</a>
@@ -111,10 +110,11 @@
             <nav>
                 <ul>
                     <li><a href="/">トップ</a></li>
+                    <li><a href="/calender">カレンダー</a></li>
+                    <li><a href="/log-out" id="log-out">ログアウト</a></li>
                 </ul>
             </nav>
 
-            <a href="/log-out" id="log-out">ログアウト</a>
         </aside>
 
         <!--== コンテンツ ===================-->
