@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::resource('/login', LoginController::class);
+Route::resource('/login-out', LogoutController::class);
+Route::resource('/', IndexController::class);
+
+Route::middleware(['admin_auth'])->group(function () {
+
 });
