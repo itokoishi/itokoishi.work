@@ -65,7 +65,7 @@
 #calender-content .calendar-table td {
   border: 1px solid #dddddd;
   background: #ffffff;
-  padding: 10px 5px;
+  padding: 10px 20px;
   vertical-align: top;
   /*-- スケジュール個別データ ---------------------*/
 }
