@@ -2,11 +2,7 @@
 
 namespace App\Lib;
 
-use App\Models\RecruitUser;
-use App\Models\Reservation;
 use DateTime;
-use Illuminate\Support\Facades\Date;
-use JetBrains\PhpStorm\Pure;
 use stdClass;
 
 class Calender
@@ -21,7 +17,7 @@ class Calender
      * @return array
      * @throws \Exception
      */
-    public function getReservationCalender(string $month, string $last_day, string $today): array
+    public function getTable(string $month, string $last_day, string $today): array
     {
         $calendar = [];
         $j        = 0;

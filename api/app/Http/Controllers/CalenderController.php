@@ -23,7 +23,10 @@ class CalenderController extends CommonController
     public function index(Request $request): View|Factory|Application
     {
         $calender = new Calender();
-        $this->_items['calender'] = $calender;
+        $last_date = new \DateTime($this->_this_month);
+        $last_day = $last_date->modify('last day')->format('d');
+
+        $this->_items['calender'] = $calender->getTable($this->_this_month, $last_day, $this->_today);
         return view('calender', $this->_items);
     }
 }

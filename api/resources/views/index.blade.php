@@ -1,7 +1,6 @@
 @extends('layouts.front-main')
 
 @section('page-css')
-    <link rel="stylesheet" href="/css/style.css">
 @endsection
 
 @section('page-js')
