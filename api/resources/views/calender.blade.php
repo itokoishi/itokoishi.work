@@ -11,7 +11,23 @@
     <article>
         <h1>カレンダー</h1>
         <section id="calender-content">
-            <!-- 今月カレンダーコンテンツ -->
+            <!-- カレンダーコンテンツ -->
+            <ul id="calender-nav">
+                <li>
+                    <a id="prev-month" href="/calender?month={{$prev_month}}"> 前の月</a>
+                </li>
+
+                <li>
+                    <a id="this-month" href="/calender">今月</a>
+                </li>
+
+                <li>
+                    <a id="next-month" href="/calender?month={{$next_month}}"> 次の月</a>
+                </li>
+            </ul>
+
+            <p id="month-title">{{$str_month}}</p>
+
             <table class="calendar-table calender">
                 <tr>
                     <th class="sun">日</th>

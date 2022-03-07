@@ -2,156 +2,197 @@
  カレンダー検索
 ------------------------------------- */
 #search-box {
-  @media (max-width: 500px) {
-    width: 100%;
-  }
-
-  h1 {
-    margin: 0;
-    padding: 0;
-    border: none;
-  }
-
-  #search-open-close {
-    font-size: 14px;
-    color: #0c5460;
-    float: right;
-  }
-
-  #search-item {
-    display: none;
-
-    select{
-      width: 200px;
-    }
-
-    input{
-      width: 500px;
-      @media (max-width: 500px) {
+    @media (max-width: 500px) {
         width: 100%;
-      }
     }
-  }
+
+    h1 {
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    #search-open-close {
+        font-size: 14px;
+        color: #0c5460;
+        float: right;
+    }
+
+    #search-item {
+        display: none;
+
+        select {
+            width: 200px;
+        }
+
+        input {
+            width: 500px;
+            @media (max-width: 500px) {
+                width: 100%;
+            }
+        }
+    }
 }
 
 /* -------------------------------------
  カレンダー
 ------------------------------------- */
 #calender-content {
-  background: #ffffff;
+    background: #ffffff;
 
-  .calendar-month {
-    font-size: 18px;
-    text-align: center;
-    margin: 0 0 10px 0;
-  }
+    #calender-nav {
+        display: flex;
+        flex: 3;
 
-  .calendar-table {
-    width: 100%;
-    margin: 0 0 20px 0;
-    table-layout: fixed;
+        li {
+            width: 33.3%;
+            display: block;
 
-    th {
-      padding: 10px;
-      border: 1px solid #dddddd;
-      background: #262626;
-      color: #ffffff;
-      font-weight: normal;
-      text-align: center;
+            a {
+                display: block;
+                text-align: center;
+                color: #FFFFFF;
+                margin: 10px 0;
+                border-radius: 5px;
 
-      &.sun {
-        background: #ff0e46;
-      }
+                &#prev-month{
+                    background: #2a8300;
+                    padding: 10px;
+                    width: 90%;
+                }
 
-      &.sat {
-        background: #0e66ff;
-      }
+                &#this-month{
+                    background: #606060;
+                    padding: 10px;
+                    width: 90%;
+                }
+
+                &#next-month{
+                    background: #F39813;
+                    padding: 10px;
+                    width: 90%;
+                }
+            }
+        }
     }
 
-    td {
-      border: 1px solid #dddddd;
-      background: #ffffff;
-      padding: 10px 20px;
-      vertical-align: top;
+    #month-title{
+        font-size: 28px;
+        text-align: center;
+    }
 
-      &:first-child:before {
-        display: block;
-        float: left;
-        min-height: 100px; /* この値は適宜書き換える */
-        content: "";
+    .calendar-month {
+        font-size: 18px;
+        text-align: center;
+        margin: 0 0 10px 0;
+    }
 
-        @media('max-width:500px'){
-          min-height: 50px;
-        }
-      }
-
-      span.c-date {
-        font-weight: bold;
-        line-height: 1.4em;
-      }
-
-      &.today {
-        background: #ecf0f1;
-      }
-
-      a {
-        font-size: 14px;
+    .calendar-table {
         width: 100%;
-        display: block;
-        border-radius: 2px;
-        text-decoration: none;
-        box-sizing: border-box;
-        color: #27ae60;
+        margin: 0 0 20px 0;
+        table-layout: fixed;
 
-        span {
-          color: #ff7107;
-        }
-      }
+        th {
+            padding: 10px;
+            border: 1px solid #dddddd;
+            background: #262626;
+            color: #ffffff;
+            font-weight: normal;
+            text-align: center;
 
-      /*-- スケジュール個別データ ---------------------*/
-      .pc-reservation-data {
-        @media (max-width: 500px) {
-          display: none;
-        }
+            &.sun {
+                background: #ff0e46;
+            }
 
-        a{
-          border-bottom: 1px solid #efefef;
-          line-height: 1em;
-          padding: 5px;
-          box-sizing: border-box;
-
-          &:last-child {
-            border: none;
-          }
+            &.sat {
+                background: #0e66ff;
+            }
         }
 
-        span.time {
-          font-size: 10px;
-        }
+        td {
+            border: 1px solid #dddddd;
+            background: #ffffff;
+            padding: 10px 20px;
+            vertical-align: top;
 
-        span.name {
-          font-size: 14px;
-        }
+            &:first-child:before {
+                display: block;
+                float: left;
+                min-height: 100px; /* この値は適宜書き換える */
+                content: "";
 
-        span.shop {
-          font-size: 10px;
-        }
-      }
+                @media('max-width:500px') {
+                    min-height: 50px;
+                }
+            }
 
-      .sp-reservation-data{
-        @media (min-width: 500px) {
-          display: none;
-        }
-      }
+            span.c-date {
+                font-weight: bold;
+                line-height: 1.4em;
+            }
 
-      p.schedule-therapist {
-        border-bottom: 1px dotted #b3b3b3;
+            &.today {
+                background: #ecf0f1;
+            }
 
-        &:last-child {
-          border: none;
+            a {
+                font-size: 14px;
+                width: 100%;
+                display: block;
+                border-radius: 2px;
+                text-decoration: none;
+                box-sizing: border-box;
+                color: #27ae60;
+
+                span {
+                    color: #ff7107;
+                }
+            }
+
+            /*-- スケジュール個別データ ---------------------*/
+            .pc-reservation-data {
+                @media (max-width: 500px) {
+                    display: none;
+                }
+
+                a {
+                    border-bottom: 1px solid #efefef;
+                    line-height: 1em;
+                    padding: 5px;
+                    box-sizing: border-box;
+
+                    &:last-child {
+                        border: none;
+                    }
+                }
+
+                span.time {
+                    font-size: 10px;
+                }
+
+                span.name {
+                    font-size: 14px;
+                }
+
+                span.shop {
+                    font-size: 10px;
+                }
+            }
+
+            .sp-reservation-data {
+                @media (min-width: 500px) {
+                    display: none;
+                }
+            }
+
+            p.schedule-therapist {
+                border-bottom: 1px dotted #b3b3b3;
+
+                &:last-child {
+                    border: none;
+                }
+            }
         }
-      }
     }
-  }
 }
 
