@@ -5,7 +5,7 @@
     <title>ポートフォリオ</title>
     <meta name="description" content="ポートフォリオ">
     <meta name="author" content="SitePoint">
-    <link rel="shortcut icon" href="/css/admin/favicon.ico">
+    <link rel="shortcut icon" href="/css/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,-scalable=no">
 
     <!--== CSS ===================-->
@@ -32,11 +32,13 @@
     <!--== JS ===================-->
     <!-- jquery -->
     <script src="//code.jquery.com/jquery-3.5.1.min.js"
-            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous">
     </script>
     <!-- bootstrap -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
     </script>
     <!-- flat-ui -->
     <script src="/flat-ui/scripts/flat-ui.js"></script>

@@ -7,7 +7,6 @@
 @section('page-js')
     <script>
         $(function () {
-
             $('input[name="date"]').datepicker({
                 format: 'yyyy-mm-dd',
                 language: 'ja'
@@ -28,20 +27,6 @@
                 $('#complete-modal').remodal().open();
                 return false;
             });
-
-            $(document).on('click', '#search-open-close', () => {
-                if ($('#search-item').is(':hidden')) {
-                    $('#search-item').show();
-                    $('#search-box h1').attr('style', 'margin:0 0 20px 0; padding:0 0 5px 0; border-bottom: 1px solid #dddddd;')
-                    $(this).text('[閉じる]').removeClass('close');
-                } else {
-                    $('#search-item').hide();
-                    $('#search-box h1').attr('style', 'margin:0; padding:0; border: none')
-                    $(this).text('[開く]').addClass('close');
-                }
-                return false;
-            });
-
         });
     </script>
 @endsection
