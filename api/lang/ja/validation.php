@@ -133,7 +133,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
-    
+
     /* -- attributeの日本語表記 ---------------------*/
     'attributes' => [
         'name'       => '名前',
