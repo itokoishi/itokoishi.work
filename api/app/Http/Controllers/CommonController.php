@@ -17,6 +17,7 @@ class CommonController extends Controller
     protected int    $_week;
     protected string $_next_month;
     protected string $_yesterday;
+    protected string $_storage_path;
 
     /**
      * @throws Exception
@@ -39,5 +40,10 @@ class CommonController extends Controller
         $this->_next_month = $start_date->modify('next month')->format('Y-m');
         $yesterday         = new DateTime($this->_this_month . '-' . '01');
         $this->_yesterday  = $yesterday->modify('-1 day')->format('Y-m-d');
+
+        /*-----------------------------------------------
+        ストレージパス
+        -----------------------------------------------*/
+        $this->_storage_path = config('app.storage_path');
     }
 }
