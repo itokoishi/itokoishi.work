@@ -145,6 +145,13 @@ p.sub-title:before {
   transform: translateX(-200px);
 }
 
+.staff-image {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  margin: 0 0 10px 0;
+}
+
 /* -------------------------------------
  検索
 ------------------------------------- */

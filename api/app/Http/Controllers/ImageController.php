@@ -8,13 +8,16 @@ class ImageController extends CommonController
         parent::__construct();
     }
 
-    public function staff($staff_id)
+    public function staff($param)
     {
 
+        $file = $this->_storage_path . 'develop/staff/' . $param . '.jpg';
+
+        if(!file_exists($file)){
+            $file = $this->_storage_path . 'develop/staff/default.jpg';
+        }
+
+        return response()->file($file);
     }
 
-    public function staffDefault($staff_id)
-    {
-        $dir = $this->_storage_path . 'develop/staff/';
-    }
 }

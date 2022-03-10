@@ -1,5 +1,115 @@
 @charset "UTF-8";
+/* ----------------------------------------
+ 検索
+---------------------------------------- */
+#search-form{
+    dl{
+        margin: 0 0 20px 0;
 
-th{
-    width: 200px;
+        dt, dd{
+            font-size: 14px;
+            margin: 0 0 5px 0;
+        }
+    }
 }
+
+/* -------------------------------------
+ 一覧
+------------------------------------- */
+table#staff-list{
+    line-height: 1.6em;
+
+    th#image{
+        width: 115px;
+    }
+
+    th#name{
+        width: 250px;
+    }
+
+    th#shop{
+        width: 250px;
+    }
+
+    th#top,
+    th#weight{
+        width: 55px;
+    }
+
+    th#twitter-id{
+        width: 100px;
+    }
+}
+
+/* -------------------------------------
+登録ページ
+------------------------------------- */
+#staff-register-form{
+    th{
+        width: 200px;
+    }
+
+    #photo-box{
+        .image-box{
+            width: 250px;
+            text-align: center;
+        }
+    }
+}
+
+/* -------------------------------------
+ 編集処理
+------------------------------------- */
+#staff-modify-form{
+    th{
+        width: 200px;
+    }
+
+    #photo-box{
+        .image-box{
+            width: 250px;
+            text-align: center;
+        }
+    }
+}
+
+/* ----------------------------------------
+ 写真ページ
+---------------------------------------- */
+#photo-content {
+    width: 750px;
+
+    #select-bt{
+        text-align: center;
+    }
+
+    .photo-upload-btn {
+        margin: 0 0 20px 0;
+
+        input {
+            display: none;
+
+            &.cr-slider {
+                border: none !important;
+            }
+        }
+
+        .croppie-container .cr-viewport {
+            border: none !important;
+        }
+
+        #twitter-user {
+            padding: 30px;
+        }
+    }
+
+    /*-- 登録 ---------------------*/
+    #register-photo{
+        text-align: center;
+
+        #register-photo-bt{
+            margin: 0 0 10px 0;
+        }
+    }
+}
+
