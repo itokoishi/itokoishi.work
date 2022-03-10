@@ -5,6 +5,10 @@ input[name=date] {
 
 .alert {
   position: unset !important;
+  display: none;
+}
+.alert li {
+  list-style: none;
 }
 
 body {
@@ -76,6 +80,22 @@ p.sub-title:before {
 
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 123, 255, 0.1);
+}
+
+/*-----------------------------------------------
+カレンダーナビ
+-----------------------------------------------*/
+#calender-nav {
+  width: 300px;
+  margin: 0 auto 10px auto;
+}
+#calender-nav nav {
+  width: 100%;
+}
+
+#month-title {
+  font-size: 28px;
+  text-align: center;
 }
 
 /* -------------------------------------
@@ -736,7 +756,7 @@ a#smart-register-bt .fa-plus:before {
 
 .remodal-cancel,
 .remodal-confirm {
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 5px;
   padding: 10px;
 }

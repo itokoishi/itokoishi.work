@@ -4,6 +4,7 @@ use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ShiftController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,5 @@ Route::resource('/log-out', LogoutController::class);
 Route::middleware(['admin_auth'])->group(function () {
     Route::resource('/', IndexController::class);
     Route::resource('/calender', CalenderController::class);
+    Route::resource('/shift', ShiftController::class);
 });

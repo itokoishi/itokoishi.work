@@ -11,22 +11,17 @@
     <article>
         <h1>カレンダー</h1>
         <section id="calender-content">
-            <!-- カレンダーコンテンツ -->
-            <ul id="calender-nav">
-                <li>
-                    <a id="prev-month" href="/calender?month={{$prev_month}}"> 前の月</a>
-                </li>
-
-                <li>
-                    <a id="this-month" href="/calender">今月</a>
-                </li>
-
-                <li>
-                    <a id="next-month" href="/calender?month={{$next_month}}"> 次の月</a>
-                </li>
-            </ul>
 
             <p id="month-title">{{$str_month}}</p>
+
+            <!-- カレンダーコンテンツ -->
+            <div id="calender-nav">
+                <nav class="btn-group" role="group">
+                    <a id="prev-month" href="/calender?month={{$prev_month}}" class="btn btn-warning btn-xs"> 前の月</a>
+                    <a id="this-month" href="/calender" class="btn btn-default btn-xs">今月</a>
+                    <a id="next-month" href="/calender?month={{$next_month}}" class="btn btn-success btn-xs"> 次の月</a>
+                </nav>
+            </div>
 
             <table class="calendar-table calender">
                 <tr>

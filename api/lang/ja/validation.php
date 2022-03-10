@@ -135,7 +135,9 @@ return [
     ],
 
     /* -- attributeの日本語表記 ---------------------*/
-    'attributes' => [
-        'name'       => '名前',
+    'attributes'           => [
+        'name'    => '名前',
+        'start_h' => '出勤時間',
+        'end_h'   => '退勤時間',
     ],
 ];

@@ -63,7 +63,7 @@ trait ItokoishiTrait
     protected function _getHourArray(): array
     {
         $array = [];
-        for ($i = 10; $i < 24; $i++) {
+        for ($i = 1; $i < 24; $i++) {
             $array[$i] = sprintf('%02s', $i);
         }
         return $array;

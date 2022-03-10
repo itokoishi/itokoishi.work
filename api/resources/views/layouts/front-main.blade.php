@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="/fontawesome/css/all.css">
 
     <!-- datepicker -->
     <link rel="stylesheet" href="/bootstrap-datepicker/css/bootstrap-datepicker3.css">
@@ -98,6 +97,7 @@
             <li id="nav-header"></li>
             <li><a href="/">トップ</a></li>
             <li><a href="/calender">カレンダー</a></li>
+            <li><a href="/shift">シフト管理</a></li>
         </ul>
 
         <a href="/log-out" id="log-out">ログアウト</a>
@@ -112,6 +112,8 @@
                 <ul>
                     <li><a href="/">トップ</a></li>
                     <li><a href="/calender">カレンダー</a></li>
+                    <li><a href="/shift">シフト管理</a></li>
+
                     <li><a href="/log-out" id="log-out">ログアウト</a></li>
                 </ul>
             </nav>

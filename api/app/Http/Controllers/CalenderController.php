@@ -29,7 +29,7 @@ class CalenderController extends CommonController
         $month_obj = new \DateTime($month);
 
         /* -- 日付の整形 ---------------------*/
-        $last_day  = $month_obj->modify('last day of ' . $month)->format('d');
+        $last_day  = $month_obj->modify('last day of this month')->format('d');
         $str_month  = $month_obj->format('Y年m月');
         $next_month = $month_obj->modify('next month ' . $month)->format('Y-m');
         $prev_month = $month_obj->modify('previous month ' . $month)->format('Y-m');
@@ -41,4 +41,5 @@ class CalenderController extends CommonController
         $this->_items['calender']   = $calender->getTable($month, $last_day, $this->_today);
         return view('calender', $this->_items);
     }
+
 }
