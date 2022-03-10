@@ -180,13 +180,13 @@
 @endsection
 
 @section('main-contents')
-    <h1>スケジュール設定</h1>
+    <h1>シフト管理</h1>
 
     <div class="alert alert-danger">
         <ul></ul>
     </div>
 
-    <a href="/" class="btn btn-default btn-sm" id="top-link">
+    <a href="/" class="btn btn-secondary btn-sm" id="top-link">
         トップに戻る
     </a>
 
@@ -196,15 +196,17 @@
 
         <div id="calender-nav">
             <nav class="btn-group" role="group">
-                <a id="prev-month" href="/shift?month={{$prev_month}}" class="btn btn-warning btn-xs"> 前の月</a>
+                <a id="prev-month" href="/shift?month={{$prev_month}}" class="btn btn-warning btn-xs">前の月</a>
                 <a id="this-month" href="/shift" class="btn btn-default btn-xs">今月</a>
-                <a id="next-month" href="/shift?month={{$next_month}}" class="btn btn-success btn-xs"> 次の月</a>
+                <a id="next-month" href="/shift?month={{$next_month}}" class="btn btn-success btn-xs">次の月</a>
             </nav>
         </div>
 
         <table class="table table-striped table-bordered">
             <tr>
-                <th></th>
+                <th id="staff-register-link">
+                    <a id="next-month" href="/staff/register" class="btn btn-info btn-xs">スタッフ登録</a>
+                </th>
                 @foreach($shift_list as $row)
                     <th class="{{$row->week_en}}">
                         {{$row->day}}<br>

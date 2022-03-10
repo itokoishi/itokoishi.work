@@ -15,6 +15,7 @@ main {
         margin: 0 0 10px 0;
     }
 
+
     section#main-content {
         @media (min-width: 1025px) {
             width: 100%;
@@ -39,6 +40,7 @@ main {
                         color: #2b2b2b;
                         width: 100px;
                         font-size: 12px;
+                        vertical-align: middle;
 
                         &.sun {
                             color: #ff0e46;

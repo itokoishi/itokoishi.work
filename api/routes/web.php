@@ -25,4 +25,5 @@ Route::middleware(['admin_auth'])->group(function () {
     Route::resource('/', IndexController::class);
     Route::resource('/calender', CalenderController::class);
     Route::resource('/shift', ShiftController::class);
+    Route::resource('/staff/register', \App\Http\Controllers\Staff\RegisterController::class);
 });
