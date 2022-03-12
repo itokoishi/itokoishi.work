@@ -166,6 +166,7 @@
                         <th>写真登録</th>
 
                         <td id="photo-box">
+                            @if(empty($modify_data->image))
                             <section id="content-box" class="">
                                 <div id="face-photo-result"></div>
 
@@ -196,6 +197,9 @@
                                     <input type="hidden" name="y2">
                                 </div>
                             </section>
+                            @else
+                                <img src="/image/staff/{{$modify_data->id}}" class="staff-image" />
+                            @endif
                         </td>
                     </tr>
 
