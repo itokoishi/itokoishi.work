@@ -78,10 +78,6 @@ p.sub-title:before {
   top: 7px;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 123, 255, 0.1);
-}
-
 /*-----------------------------------------------
 カレンダーナビ
 -----------------------------------------------*/
@@ -582,7 +578,7 @@ table th, table td {
 }
 
 #register-bt-box {
-  text-align: right;
+  text-align: center;
   margin: 0 0 20px 0;
   display: none;
 }

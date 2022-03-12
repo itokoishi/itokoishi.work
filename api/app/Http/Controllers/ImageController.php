@@ -11,10 +11,10 @@ class ImageController extends CommonController
     public function staff($param)
     {
 
-        $file = $this->_storage_path . 'develop/staff/' . $param . '.jpg';
+        $file = $this->_storage_path . 'staff/' . $param . '.jpg';
 
         if(!file_exists($file)){
-            $file = $this->_storage_path . 'develop/staff/default.jpg';
+            $file = $this->_storage_path . 'staff/default.jpg';
         }
 
         return response()->file($file);
