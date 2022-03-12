@@ -24,7 +24,7 @@ class ListController extends CommonController
         parent::__construct();
     }
 
-    public function index(Request $request): Factory|View|Application
+    public function index(): Factory|View|Application
     {
         $list = Staff::getListAll();
 
