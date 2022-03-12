@@ -34,6 +34,7 @@
 }
 #staff-list .staff-content div.image img {
   width: 100%;
+  border-radius: 50%;
 }
 #staff-list .staff-content div.name {
   width: 150px;
