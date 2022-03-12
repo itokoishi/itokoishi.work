@@ -203,7 +203,7 @@
                     <tr>
                         <th>名前<span class="note">必須</span></th>
                         <td>
-                            <input name="name" value="" class="form-control w500">
+                            <input name="name" value="{{old('name', $modify_data->name)}}" class="form-control w500">
                             @error('name')
                             <span class="note">{{ $message }}</span>
                             @enderror
@@ -214,7 +214,7 @@
                     <tr>
                         <th>なまえ(かな)<span class="note">必須</span></th>
                         <td>
-                            <input name="name_kana" value="" class="form-control w500">
+                            <input name="name_kana" value="{{old('name_kana', $modify_data->name_kana)}}" class="form-control w500">
                             @error('name_kana')
                             <span class="note">{{ $message }}</span>
                             @enderror
@@ -227,9 +227,8 @@
                         <td>
                             <select name="birth_year" class="form-control w100 middle-line">
                                 @foreach($year_items as $val)
-                                    <option
-                                        value="{{$val['val']}}"
-                                        {{old('year', $val['initialize']) == $val['val'] ? 'selected=selected':'' }}>
+                                    <option value="{{$val['val']}}"
+                                        {{old('birth_year', $modify_data->birth_year) == $val['val'] ? 'selected=selected':'' }}>
                                         {{$val['val']}}
                                     </option>
                                 @endforeach
@@ -237,9 +236,12 @@
 
                             <p class="middle-line">年</p>
 
-                            <select name="birth_month" class="form-control w50 middle-line">
+                            <select name="month" class="form-control w50 middle-line">
                                 @foreach($month_items as $val)
-                                    <option value="{{$val}}">{{$val}}</option>
+                                    <option value="{{$val}}"
+                                        {{old('birth_month', $modify_data->birth_month) == $val ? 'selected=selected':'' }}>
+                                        {{$val}}
+                                    </option>
                                 @endforeach
                             </select>
 
@@ -247,7 +249,10 @@
 
                             <select name="birth_date" class="form-control w50 middle-line">
                                 @foreach($date_items as $val)
-                                    <option value="{{$val}}">{{$val}}</option>
+                                    <option value="{{$val}}"
+                                        {{old('date', $modify_data->birth_date) == $val ? 'selected=selected':'' }}>
+                                        {{$val}}
+                                    </option>
                                 @endforeach
                             </select>
 
@@ -272,8 +277,14 @@
                         <th>表示設定</th>
                         <td>
                             <select class="form-control w150" name="view_flag">
-                                <option value="0">表示しない</option>
-                                <option value="1">表示する</option>
+                                <option value="0"
+                                    {{old('view_flag', $modify_data->view_flag) == 0 ? 'selected=selected':''}}>
+                                    表示しない
+                                </option>
+                                <option value="1"
+                                    {{old('view_flag', $modify_data->view_flag) == 1 ? 'selected=selected':''}}>
+                                    表示する
+                                </option>
                             </select>
                         </td>
                     </tr>

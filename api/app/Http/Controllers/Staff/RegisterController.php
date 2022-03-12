@@ -28,9 +28,9 @@ class RegisterController extends CommonController
 
     public function index(): Factory|View|Application
     {
-        $this->_items['year_item']  = $this->_getYearArray();
-        $this->_items['month_item'] = $this->_getMonthArray();
-        $this->_items['date_item']  = $this->_getDateArray();
+        $this->_items['year_items']  = $this->_getYearArray();
+        $this->_items['month_items'] = $this->_getMonthArray();
+        $this->_items['date_items']  = $this->_getDateArray();
         return view('staff.register', $this->_items);
     }
 
@@ -109,9 +109,9 @@ class RegisterController extends CommonController
         $staff->name        = $request->post('name', '');
         $staff->name_kana   = $request->post('name_kana', '');
         $staff->image       = $file_name;
-        $staff->birth_year  = $request->post('year', '');
-        $staff->birth_month = $request->post('month', '');
-        $staff->birth_date  = $request->post('date', '');
+        $staff->birth_year  = $request->post('birth_year', '');
+        $staff->birth_month = $request->post('birth_month', '');
+        $staff->birth_date  = $request->post('birth_date', '');
         $staff->view_flag   = $request->post('view_flag', 0);
 
         $staff->save();
