@@ -16,28 +16,42 @@
 /* -------------------------------------
  一覧
 ------------------------------------- */
-table#staff-list {
+#staff-list {
     line-height: 1.6em;
 
-    th#image {
-        width: 115px;
-    }
+    .staff-content{
+        display: table;
 
-    th#name {
-        width: 250px;
-    }
+        &:last-child{
+            border-bottom: 1px solid #efefef;
+        }
 
-    th#shop {
-        width: 250px;
-    }
+        div{
+            vertical-align: middle;
+            display: table-cell;
+            padding: 5px;
+            border-top: 1px solid #efefef;
+            border-left: 1px solid #efefef;
 
-    th#top,
-    th#weight {
-        width: 55px;
-    }
+            &.image {
+                width: 75px;
+                img{
+                    width: 100%;
+                }
+            }
 
-    th#twitter-id {
-        width: 100px;
+            &.name {
+                width: 150px;
+            }
+
+            &.birthday{
+            }
+
+            &.bt-box{
+                border-right: 1px solid #efefef;
+
+            }
+        }
     }
 }
 

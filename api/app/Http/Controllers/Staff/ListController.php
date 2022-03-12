@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers\Staff;
+
+
+use App\Http\Controllers\CommonController;
+use App\Lib\ItokoishiTrait;
+use App\Models\Staff;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
+
+class ListController extends CommonController
+{
+
+    use ItokoishiTrait;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function index(Request $request)
+    {
+        $list = Staff::getListAll();
+
+        $this->_items['list'] = $list;
+        return view('staff.list', $this->_items);
+    }
+}

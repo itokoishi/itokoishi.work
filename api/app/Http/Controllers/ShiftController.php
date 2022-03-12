@@ -50,7 +50,7 @@ class ShiftController extends CommonController
         /*-----------------------------------------------
         スタッフ情報を取得
         -----------------------------------------------*/
-        $staff_data = Staff::query()->orderBy('id', 'DESC')->get();
+        $staff_data = Staff::getListAll();
 
         /*-----------------------------------------------
         表示用変数

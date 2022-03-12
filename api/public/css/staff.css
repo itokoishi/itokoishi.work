@@ -13,24 +13,33 @@
 /* -------------------------------------
  一覧
 ------------------------------------- */
-table#staff-list {
+#staff-list {
   line-height: 1.6em;
 }
-table#staff-list th#image {
-  width: 115px;
+#staff-list .staff-content {
+  display: table;
 }
-table#staff-list th#name {
-  width: 250px;
+#staff-list .staff-content:last-child {
+  border-bottom: 1px solid #efefef;
 }
-table#staff-list th#shop {
-  width: 250px;
+#staff-list .staff-content div {
+  vertical-align: middle;
+  display: table-cell;
+  padding: 5px;
+  border-top: 1px solid #efefef;
+  border-left: 1px solid #efefef;
 }
-table#staff-list th#top,
-table#staff-list th#weight {
-  width: 55px;
+#staff-list .staff-content div.image {
+  width: 75px;
 }
-table#staff-list th#twitter-id {
-  width: 100px;
+#staff-list .staff-content div.image img {
+  width: 100%;
+}
+#staff-list .staff-content div.name {
+  width: 150px;
+}
+#staff-list .staff-content div.bt-box {
+  border-right: 1px solid #efefef;
 }
 
 /* -------------------------------------

@@ -7,7 +7,12 @@ use App\Http\Controllers\CommonController;
 use App\Lib\ItokoishiTrait;
 use App\Models\Staff;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
@@ -21,7 +26,7 @@ class RegisterController extends CommonController
         parent::__construct();
     }
 
-    public function index()
+    public function index(): Factory|View|Application
     {
         $this->_items['year_item']  = $this->_getYearArray();
         $this->_items['month_item'] = $this->_getMonthArray();
@@ -32,7 +37,7 @@ class RegisterController extends CommonController
     /**
      * 登録処理
      * @param Request $request
-     * @return never|void
+     * @return Application|RedirectResponse|Redirector|never|void
      * @throws ValidationException
      */
     public function store(Request $request)
@@ -77,7 +82,6 @@ class RegisterController extends CommonController
             );
 
             imagejpeg($square_image, $this->_storage_path . 'staff/' . $file_name, 100);
-
         }
 
         try {
@@ -87,12 +91,14 @@ class RegisterController extends CommonController
             return abort(500);
         }
 
-        dd('登録完了しました。');
-
+        /* -- パスワード処理 ---------------------*/
+        $result = $this->_getResultMessage('success', ['スタッフの登録が完了しました']);
+        $request->session()->flash('result', $result);
+        return redirect('/staff/list');
     }
 
     /**
-     * データベース
+     * データベース登録
      * @param $request
      * @param $file_name
      * @return void

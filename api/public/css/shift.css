@@ -49,7 +49,7 @@ main section#main-content #shift table tr th span {
 main section#main-content #shift table tr th.staff-name {
   white-space: nowrap;
   text-align: left;
-  width: 100px;
+  width: 400px;
 }
 main section#main-content #shift table tr td {
   vertical-align: middle;
