@@ -48,6 +48,11 @@ class RegisterController extends CommonController
     public function store(Request $request)
     {
         $staff_count = Staff::query()->count();
+        $is_staff_limit = $staff_count >= 5;
+
+        if ($is_staff_limit){
+            die('この登録は不正かつ上限数に達しています。');
+        }
 
         $this->validate($request, [
             'name' => 'required',

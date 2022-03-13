@@ -180,7 +180,7 @@
 @endsection
 
 @section('main-contents')
-    <h1>シフト管理</h1>
+    <h1>シフト管理(PCのみ対応)</h1>
 
     <div class="alert alert-danger">
         <ul></ul>
