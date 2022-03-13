@@ -619,11 +619,27 @@ table {
         line-height: 1.4em;
         background: #666666;
         color: #ffffff;
+        display: none;
+
+        @media (min-width: 750px) {
+            display: table-cell;
+        }
     }
 
     th, td {
         padding: 10px;
         border-top: 1px solid #efefef;
+    }
+
+    td{
+        .phone-title{
+            display: block;
+            padding: 5px;
+
+            @media (min-width: 750px) {
+                display: none;
+            }
+        }
     }
 }
 

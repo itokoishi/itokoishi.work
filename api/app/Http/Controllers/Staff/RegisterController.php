@@ -28,9 +28,14 @@ class RegisterController extends CommonController
 
     public function index(): Factory|View|Application
     {
+
+        $staff_count = Staff::query()->count();
+        $is_staff_limit = $staff_count >= 5;
+
         $this->_items['year_items']  = $this->_getYearArray();
         $this->_items['month_items'] = $this->_getMonthArray();
         $this->_items['date_items']  = $this->_getDateArray();
+        $this->_items['is_staff_limit']  = $is_staff_limit;
         return view('staff.register', $this->_items);
     }
 
@@ -42,6 +47,8 @@ class RegisterController extends CommonController
      */
     public function store(Request $request)
     {
+        $staff_count = Staff::query()->count();
+
         $this->validate($request, [
             'name' => 'required',
             'name_kana' => 'required',

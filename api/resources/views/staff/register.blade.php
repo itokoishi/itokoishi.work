@@ -53,18 +53,21 @@
     <article>
         <h1>スタッフ登録</h1>
 
+        @if($is_staff_limit)
+            <p class="alert alert-danger" style="display: block;">５件が上限のため、これ以上登録はできません</p>
+        @else
         <ul id="error-message" class="alert alert-danger">
         </ul>
 
         <section>
             <form id="staff-register-form" method="post" enctype="multipart/form-data">
                 <table class="table table-striped table-bordered" id="event-register">
-
                     <!--= 写真登録 =======================-->
                     <tr>
                         <th>写真登録</th>
 
                         <td id="photo-box">
+                            <p class="phone-title">写真登録</p>
                             <section id="content-box" class="">
                                 <div id="face-photo-result"></div>
 
@@ -102,6 +105,7 @@
                     <tr>
                         <th>名前<span class="note">必須</span></th>
                         <td>
+                            <p class="phone-title">名前<span class="note">(必須)</span></p>
                             <input name="name" value="" class="form-control w500">
                             @error('name')
                             <span class="note">{{ $message }}</span>
@@ -113,6 +117,7 @@
                     <tr>
                         <th>なまえ(かな)<span class="note">必須</span></th>
                         <td>
+                            <p class="phone-title">なまえ(かな)<span class="note">(必須)</span></p>
                             <input name="name_kana" value="" class="form-control w500">
                             @error('name_kana')
                             <span class="note">{{ $message }}</span>
@@ -124,6 +129,7 @@
                     <tr>
                         <th>生年月日<span class="note">必須</span></th>
                         <td>
+                            <p class="phone-title">生年月日<span class="note">(必須)</span></p>
                             <select name="birth_year" class="form-control w100 middle-line">
                                 @foreach($year_items as $val)
                                     <option
@@ -170,6 +176,7 @@
                     <tr>
                         <th>表示設定</th>
                         <td>
+                            <p class="phone-title">表示設定</p>
                             <select class="form-control w150" name="view_flag">
                                 <option value="0">表示しない</option>
                                 <option value="1">表示する</option>
@@ -184,6 +191,7 @@
                 <a href="" class="btn btn-info btn-sm" id="register-modal-bt">登録する</a>
             </div>
         </section>
+        @endif
     </article>
 
     <section class="remodal" id="register-modal" data-remodal-id="register-modal"

@@ -43,7 +43,7 @@
 
 @section('main-contents')
     <article>
-        <h1>スタッフ一覧</h1>
+        <h1>スタッフ一覧（上限５件まで）</h1>
 
         @if(session()->has('result'))
             <ul class="alert alert-{{ session('result')->tag }}">
@@ -54,7 +54,7 @@
         @endif
 
         <div id="register-link-box">
-            <a href="" class="btn btn-success btn-sm">新規登録</a>
+            <a href="/staff/register" class="btn btn-success btn-sm">新規登録</a>
         </div>
 
         <section id="staff-list">

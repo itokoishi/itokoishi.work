@@ -73,7 +73,7 @@
  写真ページ
 ---------------------------------------- */
 #photo-box #content-box {
-  width: 500px;
+  max-width: 500px;
   /*-- 登録 ---------------------*/
 }
 #photo-box #content-box #select-bt {
