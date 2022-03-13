@@ -33,5 +33,8 @@ Route::middleware(['admin_auth'])->group(function () {
     Route::resource('/shift', ShiftController::class);
     Route::resource('/staff/register', StaffRegister::class);
     Route::resource('/staff/list', StaffList::class);
-    Route::resource('/staff/modify', StaffModify::class);
+    /* -- スタッフ編集 ---------------------*/
+    Route::get('/staff/modify/{id}', [StaffModify::class, 'index']);
+    Route::post('/staff/modify/execute', [StaffModify::class, 'execute']);
+    Route::post('/staff/modify/delete-image', [StaffModify::class, 'deleteImage']);
 });

@@ -22,7 +22,7 @@
         <section id="staff-list">
             @foreach($list as $row)
                 <div class="staff-content">
-                    <div class="image"><img src="/image/staff/{{$row->id}}"/></div>
+                    <div class="image"><img src="/image/staff/{{$row->id}}?{{$row->created_at}}"/></div>
                     <div class="name">
                         {{$row->name}}<br>
                         ({{$row->name_kana}})

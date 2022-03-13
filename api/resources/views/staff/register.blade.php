@@ -7,6 +7,7 @@
 
 @section('page-js')
     <script src="/croppie/croppie.js"></script>
+    <script src="/js/staff-photo.js"></script>
     <script>
         $(function () {
             /* -------------------------------------
@@ -21,9 +22,9 @@
                 let param = []
                 param['name'] = $('input[name="name"]').val();
                 param['name_kana'] = $('input[name="name_kana"]').val();
-                param['birth_year'] = $('select[name="year"]').val();
-                param['birth_month'] = $('select[name="month"]').val();
-                param['birth_date'] = $('select[name="date"]').val();
+                param['birth_year'] = $('select[name="birth_year"]').val();
+                param['birth_month'] = $('select[name="birth_month"]').val();
+                param['birth_date'] = $('select[name="birth_date"]').val();
 
                 /* -- バリデーション ---------------------*/
                 let validate = isValid(param);
@@ -42,111 +43,9 @@
             /*-----------------------------------------------
             写真の選択処理
             -----------------------------------------------*/
-            let uploadCrop;
+            cropPhoto();
 
-            uploadCrop = $('#face-photo-result').croppie({
-                viewport: {width: 200, height: 200, type: 'circle'},
-                boundary: {width: 250, height: 250},
-                url: '/image/staff/default'
-            });
-
-            uploadCrop.on('update.croppie', function (e, cropData) {
-                $('input[name="x1"]').val(cropData.points[0]);
-                $('input[name="y1"]').val(cropData.points[1]);
-                $('input[name="x2"]').val(cropData.points[2]);
-                $('input[name="y2"]').val(cropData.points[3]);
-            });
-
-            $(document).on('change', '#staff-photo', function () {
-                /* -- ファイルの読み込み ---------------------*/
-                if (this.files && this.files[0]) {
-
-                    /* -- ファイルタイプチェック ---------------------*/
-                    if(this.files[0].type !== 'image/jpeg'){
-                        let validate = [];
-                        validate['result'] = false;
-                        validate['message'] = [];
-                        validate['message'][0] = '画像はjpegのみとなります。';
-
-                        let text = '';
-                        validate['message'].forEach((valid) =>{ text += '<li>' + valid + '</li>'; });
-                        $('#error-message').html(text);
-                        $('.alert').show();
-                        return false;
-                    }
-
-                    let reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        uploadCrop.croppie('bind', {
-                            url: e.target.result
-                        });
-                        $('#face-photo-result').addClass('ready');
-                    }
-
-                    $('#select-bt').hide();
-                    $('#croppie-bt-box').show();
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
-
-            $(document).on('click', '#croppie-bt', function () {
-                uploadCrop.croppie('result', 'base64').then(function (base64) {
-                    $('#face-photo-result').hide();
-                    $('#crop-result img').attr('src', base64);
-                    $('#select-bt').hide();
-                    $('#croppie-bt-box').hide();
-                    $('#crop-result').show();
-                });
-                return false;
-            });
-
-            /*-----------------------------------------------
-            画像削除
-            -----------------------------------------------*/
-            $(document).on('click', '#crop-delete-bt', function () {
-                $('input[name="photo"]').val(null);
-                uploadCrop = $('#face-photo-result').croppie({
-                    viewport: {width: 200, height: 200, type: 'circle'},
-                    boundary: {width: 250, height: 250},
-                    url: '/image/staff/default'
-                });
-                $('#face-photo-result').show();
-                $('#select-bt').show();
-                $('#crop-result').hide();
-                return false;
-            });
         });
-
-        /**
-         * バリデーション
-         * @param param
-         * @returns {*[]}
-         */
-        function isValid(param) {
-            let validate = [];
-            validate['result'] = true;
-            validate['message'] = [];
-
-            if (!param['name']) {
-                validate['result'] = false;
-                validate['message'][0] = '名前は必須です。';
-            }
-
-            if (!param['name_kana']) {
-                validate['result'] = false;
-                validate['name_kana'] = [];
-                validate['message'][1] = 'なまえ(かな)は必須です。';
-            }
-
-            if (!param['birth_year'] || !param['birth_month'] || !param['birth_date']) {
-                validate['result'] = false;
-                validate['birth_day'] = [];
-                validate['message'][2] = '生年月日は必須です。';
-            }
-
-            return validate;
-        }
     </script>
 @endsection
 
@@ -253,15 +152,15 @@
 
                             <p class="middle-line">日</p>
 
-                            @error('year')
+                            @error('birth_year')
                             <span class="note">{{ $message }}</span>
                             @enderror
 
-                            @error('month')
+                            @error('birth_month')
                             <span class="note">{{ $message }}</span>
                             @enderror
 
-                            @error('date')
+                            @error('birth_date')
                             <span class="note">{{ $message }}</span>
                             @enderror
                         </td>
