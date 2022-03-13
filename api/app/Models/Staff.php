@@ -21,10 +21,22 @@ class Staff extends Model
      * スタッフリスト取得
      * @return Builder[]|Collection
      */
-    public static function getListAll(): Collection|array
+    public static function getShiftList(): Collection|array
     {
         return self::query()
             ->where('view_flag', 1)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+    }
+
+    /**
+     * スタッフリスト取得
+     * @return Builder[]|Collection
+     */
+    public static function getListAll(): Collection|array
+    {
+        return self::query()
+            ->orderBy('view_flag', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->get();
     }

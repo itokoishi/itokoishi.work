@@ -50,7 +50,7 @@ class ShiftController extends CommonController
         /*-----------------------------------------------
         スタッフ情報を取得
         -----------------------------------------------*/
-        $staff_data = Staff::getListAll();
+        $staff_data = Staff::getShiftList();
 
         /*-----------------------------------------------
         表示用変数

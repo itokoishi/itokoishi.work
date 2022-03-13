@@ -32,7 +32,10 @@ Route::middleware(['admin_auth'])->group(function () {
     Route::resource('/calender', CalenderController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/staff/register', StaffRegister::class);
-    Route::resource('/staff/list', StaffList::class);
+
+    Route::get('/staff/list', [StaffList::class, 'index']);
+    Route::post('/staff/list/delete', [StaffList::class, 'delete']);
+
     /* -- スタッフ編集 ---------------------*/
     Route::get('/staff/modify/{id}', [StaffModify::class, 'index']);
     Route::post('/staff/modify/execute', [StaffModify::class, 'execute']);

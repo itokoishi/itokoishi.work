@@ -31,4 +31,16 @@ class ListController extends CommonController
         $this->_items['list'] = $list;
         return view('staff.list', $this->_items);
     }
+
+    /**
+     * 更新情報の削除
+     * @param Request $request
+     * @return bool|string
+     */
+    public function delete(Request $request): bool|string
+    {
+        $id = $request->post('id', '');
+        Staff::query()->where('id', $id)->delete();
+        return json_encode(['id' => $id]);
+    }
 }
