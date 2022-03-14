@@ -136,7 +136,7 @@
                                 </section>
                             @else
                                 <section id="content-box">
-                                    <img src="/image/staff/{{$modify_data->id}}?{{$modify_data->created_at}}" class="staff-image"/>
+                                    <img src="/image/staff/{{$modify_data->id}}?{{$modify_data->updated_at}}" class="staff-image"/>
                                     <a href="" id="photo-delete-modal-bt"
                                        class="btn btn-danger btn-sm">
                                         削除する

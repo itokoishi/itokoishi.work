@@ -61,7 +61,9 @@ class Staff extends Model
         $staff              = Staff::query()->find($request->post('id', ''));
         $staff->name        = $request->post('name', '');
         $staff->name_kana   = $request->post('name_kana', '');
-        $staff->image       = $image_name;
+        if (!empty($image_name)){
+            $staff->image   = $image_name;
+        }
         $staff->birth_year  = $request->post('birth_year', '');
         $staff->birth_month = $request->post('birth_month', '');
         $staff->birth_date  = $request->post('birth_date', '');

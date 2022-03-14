@@ -61,7 +61,7 @@
             @foreach($list as $row)
                 <div class="staff-content{{$row->view_flag ? '' : ' not_view'}} staff{{$row->id}}" >
                     <div class="image">
-                        <img src="/image/staff/{{$row->id}}?{{$row->created_at}}"/>
+                        <img src="/image/staff/{{$row->id}}?{{$row->updated_at}}"/>
                         {!! $row->view_flag ? '' : '<span class="note">非表示中</span>' !!}
                     </div>
                     <div class="name">

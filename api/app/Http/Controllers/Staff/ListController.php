@@ -40,6 +40,16 @@ class ListController extends CommonController
     public function delete(Request $request): bool|string
     {
         $id = $request->post('id', '');
+
+        if(!empty($id)){
+            $image_name = Staff::getImage($id);
+            $staff_image = $this->_storage_path . 'staff/' . $image_name;
+            if(file_exists($staff_image)){
+                unlink($staff_image);
+            }
+            Staff::deleteImage($id);
+        }
+
         Staff::query()->where('id', $id)->delete();
         return json_encode(['id' => $id]);
     }
