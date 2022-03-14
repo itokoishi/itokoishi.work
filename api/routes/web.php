@@ -5,6 +5,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\Staff\ModifyController as StaffModify;
 use App\Http\Controllers\Staff\RegisterController as StaffRegister;
@@ -28,7 +29,7 @@ Route::resource('/log-out', LogoutController::class);
 Route::get('/image/staff/{param}', [ImageController::class, 'staff']);
 
 Route::middleware(['admin_auth'])->group(function () {
-    Route::resource('/', IndexController::class);
+    Route::get('/profile', [ProfileController::class, 'index']);
     Route::resource('/calender', CalenderController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/staff/register', StaffRegister::class);
