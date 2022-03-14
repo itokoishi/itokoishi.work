@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Lib\Calender;
+use App\Models\Schedule;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CalenderController extends CommonController
 {
@@ -17,6 +20,7 @@ class CalenderController extends CommonController
     }
 
     /**
+     * カレンダー表示
      * @param Request $request
      * @return Application|Factory|View
      * @throws Exception
@@ -40,6 +44,63 @@ class CalenderController extends CommonController
         $this->_items['str_month']  = $str_month;
         $this->_items['calender']   = $calender->getTable($month, $last_day, $this->_today);
         return view('calender', $this->_items);
+    }
+
+    /**
+     * 登録処理
+     * @param Request $request
+     * @return false|JsonResponse|string
+     */
+    public function store(Request $request): bool|JsonResponse|string
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required',
+                'date' => 'required|date',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(
+                ['errors' => $validator->getMessageBag()->toArray(),]);
+        }
+
+        $id = $this->_insertSchedule($request);
+        return json_encode(['id'=>$id]);
+    }
+
+    /**
+     * アップデート処理
+     * @param Request $request
+     * @param         $id
+     * @return false|string
+     */
+    public function update(Request $request, $id): bool|string
+    {
+        $this->_updateSchedule($request, $id);
+
+        return json_encode(['id'=>$id]);
+    }
+
+    private function _updateSchedule($request, $id)
+    {
+        $schedule = Schedule::query()->find($id);
+        $schedule->title = $request->post('title', '');
+        $schedule->memo = $request->post('memo', '');
+        $schedule->date = $request->post('date', '');
+        $schedule->save();
+    }
+
+    private function _insertSchedule($request)
+    {
+        $schedule = new Schedule();
+        $schedule->title = $request->post('title', '');
+        $schedule->memo = $request->post('memo', '');
+        $schedule->date = $request->post('date', '');
+        $schedule->save();
+
+        return $schedule->id;
     }
 
 }

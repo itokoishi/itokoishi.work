@@ -17,6 +17,7 @@
     <!-- datepicker -->
     <link rel="stylesheet" href="/bootstrap-datepicker/css/bootstrap-datepicker3.css">
     <link rel="stylesheet" href="/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.css">
     <!-- flat-ui -->
     <link rel="stylesheet" href="/flat-ui/css/flat-ui.css">
     <!-- remodal -->
@@ -129,5 +130,11 @@
 
     </main>
 </div>
+
+@if(str_contains('calender', request()->path()))
+<a href="" id="smart-register-bt">
+    <i class="fas fa-plus"></i>
+</a>
+@endif
 </body>
 </html>

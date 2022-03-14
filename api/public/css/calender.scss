@@ -73,8 +73,12 @@
         td {
             border: 1px solid #dddddd;
             background: #ffffff;
-            padding: 10px 20px;
+            padding: 10px;
             vertical-align: top;
+
+            &.today {
+                background: #f4f4f4;
+            }
 
             &:first-child:before {
                 display: block;
@@ -87,13 +91,18 @@
                 }
             }
 
+            .schedule-text{
+                font-size: 12px;
+                background: #1bc5a3;
+                display: block;
+                padding: 5px;
+                border-radius: 5px;
+                color: #ffffff;
+            }
+
             span.c-date {
                 font-weight: bold;
                 line-height: 1.4em;
-            }
-
-            &.today {
-                background: #ecf0f1;
             }
 
             a {
@@ -154,6 +163,22 @@
                 }
             }
         }
+    }
+}
+
+#register-box{
+    .form-title{
+        text-align: left;
+        font-size: 18px;
+        margin: 0 0 5px 0;
+    }
+
+    input{
+        margin: 0 0 10px 0;
+    }
+
+    textarea{
+        margin: 0 0 10px 0;
     }
 }
 

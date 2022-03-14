@@ -65,9 +65,12 @@
 #calender-content .calendar-table td {
   border: 1px solid #dddddd;
   background: #ffffff;
-  padding: 10px 20px;
+  padding: 10px;
   vertical-align: top;
   /*-- スケジュール個別データ ---------------------*/
+}
+#calender-content .calendar-table td.today {
+  background: #f4f4f4;
 }
 #calender-content .calendar-table td:first-child:before {
   display: block;
@@ -81,12 +84,17 @@
     min-height: 50px;
   }
 }
+#calender-content .calendar-table td .schedule-text {
+  font-size: 12px;
+  background: #1bc5a3;
+  display: block;
+  padding: 5px;
+  border-radius: 5px;
+  color: #ffffff;
+}
 #calender-content .calendar-table td span.c-date {
   font-weight: bold;
   line-height: 1.4em;
-}
-#calender-content .calendar-table td.today {
-  background: #ecf0f1;
 }
 #calender-content .calendar-table td a {
   font-size: 14px;
@@ -133,6 +141,18 @@
 }
 #calender-content .calendar-table td p.schedule-therapist:last-child {
   border: none;
+}
+
+#register-box .form-title {
+  text-align: left;
+  font-size: 18px;
+  margin: 0 0 5px 0;
+}
+#register-box input {
+  margin: 0 0 10px 0;
+}
+#register-box textarea {
+  margin: 0 0 10px 0;
 }
 
 /*# sourceMappingURL=calender.css.map */

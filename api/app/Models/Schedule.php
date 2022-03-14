@@ -12,4 +12,5 @@ class Schedule extends Model
 
     protected $primaryKey = 'id';
     protected $dateFormat = 'Y-m-d H:i:s';
+
 }

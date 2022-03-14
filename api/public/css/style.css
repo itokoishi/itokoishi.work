@@ -607,25 +607,20 @@ table td .phone-title {
   }
 }
 
-a#smart-register-bt {
+#smart-register-bt {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   display: inline-block;
   padding: 15px;
   background: #ff8300;
   border-radius: 30px;
   font-size: 25px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   box-shadow: 0px 6px 14px -2px rgba(10, 10, 10, 0.5);
   color: #ffffff;
 }
-a#smart-register-bt .fa-plus:before {
+#smart-register-bt .fa-plus:before {
   color: #ffffff;
-}
-@media (min-width: 600px) {
-  a#smart-register-bt {
-    display: none;
-  }
 }
 
 /* -------------------------------------

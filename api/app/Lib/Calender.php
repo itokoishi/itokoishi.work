@@ -2,7 +2,9 @@
 
 namespace App\Lib;
 
+use App\Models\Schedule;
 use DateTime;
+use Illuminate\Database\Eloquent\Collection;
 use stdClass;
 
 class Calender
@@ -31,12 +33,12 @@ class Calender
             if ($i == 1) {
                 /*-- 1日目の曜日までをループ ---------------------------*/
                 for ($s = 1; $s <= $week_no; $s++) {
-
                     /*-- 前半に空文字をセット ---------------------------*/
                     $obj              = new stdClass();
                     $obj->day         = '';
+                    $obj->data        = [];
                     $obj->today_flag  = false;
-                    $obj->target_date = $target_date;
+                    $obj->target_date = '';
                     $calendar[$j]     = $obj;
                     $j++;
                 }
@@ -49,6 +51,7 @@ class Calender
             $obj->week_no     = $week_no;
             $obj->today_flag  = ($target_date == $today);
             $obj->target_date = $target_date;
+            $obj->data        = $this->_getScheduleData($target_date);
 
             $calendar[$j] = $obj;
             $j++;
@@ -62,8 +65,9 @@ class Calender
                     /*-- 前半に空文字をセット ---------------------------*/
                     $obj              = new stdClass();
                     $obj->day         = '';
+                    $obj->data        = [];
                     $obj->today_flag  = false;
-                    $obj->target_date = $target_date;
+                    $obj->target_date = '';
                     $calendar[$j]     = $obj;
                     $j++;
                 }
@@ -71,5 +75,10 @@ class Calender
         }
 
         return $calendar;
+    }
+
+    private function _getScheduleData($target_date): Collection|array
+    {
+        return Schedule::query()->where('date', $target_date)->get();
     }
 }

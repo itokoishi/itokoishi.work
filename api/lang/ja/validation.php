@@ -142,5 +142,8 @@ return [
         'birth_year' => '生年月日',
         'birth_month' => '生年月日',
         'birth_date' => '生年月日',
+        'date' => '日付',
+        'title' => 'タイトル',
+        'memo' => 'メモ',
     ],
 ];
