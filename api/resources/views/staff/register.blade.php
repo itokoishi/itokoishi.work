@@ -24,7 +24,7 @@
              画像削除
             ------------------------------------- */
             $(document).on('click', '#delete-photo-bt', function () {
-                let token = $('input[name="csrfmiddlewaretoken"]').val();
+                let token = $('input[name="_token"]').val();
                 let url = '/image/staff/tmp/delete';
 
                 // Ajax通信を開始
@@ -34,7 +34,7 @@
                     dataType: 'json',
                     // フォーム要素の内容をハッシュ形式に変換
                     data: {
-                        'csrfmiddlewaretoken': token
+                        '_token': token
                     },
                     timeout: 5000,
                 })
@@ -75,7 +75,7 @@
                             <div class="image-box">
                                 <img src="/image/staff/default" class="staff-image" width="250"/><br>
 
-                                <a href="/admin/staff/photo?type=register" class="btn btn-warning btn-sm">
+                                <a href="/staff/photo?type=register" class="btn btn-warning btn-sm">
                                     写真を登録
                                 </a>
                             </div>
@@ -105,6 +105,62 @@
                         <th>なまえ(かな)<span class="note">必須</span></th>
                         <td>
                             <input name="name_kana" value="" class="form-control w500">
+                            @error('name_kana')
+                            <span class="note">{{ $message }}</span>
+                            @enderror
+                        </td>
+                    </tr>
+
+                    <!--= 生年月日 =======================-->
+                    <tr>
+                        <th>生年月日<span class="note">必須</span></th>
+                        <td>
+                            <select name="year" class="form-control w100 middle-line">
+                                @foreach($year_item as $val)
+                                    <option value="{{$val['val']}}" {{old('year', $val['initialize']) == $val['val'] ? 'selected=selected':'' }}>{{$val['val']}}</option>
+                                @endforeach
+                            </select>
+
+                            <p class="middle-line">年</p>
+
+                            <select name="month" class="form-control w50 middle-line">
+                                @foreach($month_item as $val)
+                                    <option value="{{$val}}">{{$val}}</option>
+                                @endforeach
+                            </select>
+
+                            <p class="middle-line">月</p>
+
+                            <select name="date" class="form-control w50 middle-line">
+                                @foreach($date_item as $val)
+                                    <option value="{{$val}}">{{$val}}</option>
+                                @endforeach
+                            </select>
+
+                            <p class="middle-line">日</p>
+
+                            @error('year')
+                            <span class="note">{{ $message }}</span>
+                            @enderror
+
+                            @error('month')
+                            <span class="note">{{ $message }}</span>
+                            @enderror
+
+                            @error('date')
+                            <span class="note">{{ $message }}</span>
+                            @enderror
+                        </td>
+                    </tr>
+
+                    <!--= 表示設定 =======================-->
+                    <tr>
+                        <th>表示設定</th>
+                        <td>
+                            <select class="form-control w150">
+                                <option value="0">表示しない</option>
+                                <option value="1">表示する</option>
+                            </select>
                             @error('name_kana')
                             <span class="note">{{ $message }}</span>
                             @enderror
