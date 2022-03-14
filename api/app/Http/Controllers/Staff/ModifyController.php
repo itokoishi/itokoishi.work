@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers\Staff;
 
-
-use App\Http\Controllers\CommonController;
 use App\Lib\ItokoishiTrait;
 use App\Models\Staff;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\CommonController;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
-class RegisterController extends CommonController
+class ModifyController extends CommonController
 {
 
     use ItokoishiTrait;
@@ -26,34 +23,27 @@ class RegisterController extends CommonController
         parent::__construct();
     }
 
-    public function index(): Factory|View|Application
+    /**
+     * 更新ページ
+     * @param $id
+     * @return Application|Factory|View
+     */
+    public function index($id): View|Factory|Application
     {
+        $modify_data = Staff::query()->where('id', $id)->first();
 
-        $staff_count = Staff::query()->count();
-        $is_staff_limit = $staff_count >= 5;
-
-        $this->_items['year_items']  = $this->_getYearArray();
+        $this->_items['modify_data'] = $modify_data;
+        $this->_items['year_items'] = $this->_getYearArray();
         $this->_items['month_items'] = $this->_getMonthArray();
-        $this->_items['date_items']  = $this->_getDateArray();
-        $this->_items['is_staff_limit']  = $is_staff_limit;
-        return view('staff.register', $this->_items);
+        $this->_items['date_items'] = $this->_getDateArray();
+        return view('staff.modify', $this->_items);
     }
 
     /**
-     * 登録処理
-     * @param Request $request
-     * @return Application|RedirectResponse|Redirector|never|void
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function execute(Request $request)
     {
-        $staff_count = Staff::query()->count();
-        $is_staff_limit = $staff_count >= 5;
-
-        if ($is_staff_limit){
-            die('この登録は不正かつ上限数に達しています。');
-        }
-
         $this->validate($request, [
             'name' => 'required',
             'name_kana' => 'required',
@@ -97,35 +87,35 @@ class RegisterController extends CommonController
         }
 
         try {
-            $this->_insertStaff($request, $file_name);
+            Staff::updateStaff($request, $file_name);
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return abort(500);
         }
 
         /* -- パスワード処理 ---------------------*/
-        $result = $this->_getResultMessage('success', ['スタッフの登録が完了しました']);
+        $result = $this->_getResultMessage('success', ['スタッフの更新が完了しました']);
         $request->session()->flash('result', $result);
         return redirect('/staff/list');
     }
 
     /**
-     * データベース登録
-     * @param $request
-     * @param $file_name
-     * @return void
+     * 画像削除処理
+     * @param Request $request
+     * @return array|string|null
      */
-    public function _insertStaff($request, $file_name)
+    public function deleteImage(Request $request): array|string|null
     {
-        $staff              = new Staff();
-        $staff->name        = $request->post('name', '');
-        $staff->name_kana   = $request->post('name_kana', '');
-        $staff->image       = $file_name;
-        $staff->birth_year  = $request->post('birth_year', '');
-        $staff->birth_month = $request->post('birth_month', '');
-        $staff->birth_date  = $request->post('birth_date', '');
-        $staff->view_flag   = $request->post('view_flag', 0);
+        $id = $request->post('id', '');
 
-        $staff->save();
+        if(!empty($id)){
+            $image_name = Staff::getImage($id);
+            $staff_image = $this->_storage_path . 'staff/' . $image_name;
+            if(file_exists($staff_image)){
+                unlink($staff_image);
+            }
+            Staff::deleteImage($id);
+        }
+        return $id;
     }
 }

@@ -2,9 +2,12 @@
 
 @section('page-css')
     <link rel="stylesheet" href="/css/staff.css">
+    <link rel="stylesheet" href="/croppie/croppie.css">
 @endsection
 
 @section('page-js')
+    <script src="/croppie/croppie.js"></script>
+    <script src="/js/staff-photo.js"></script>
     <script>
         $(function () {
             /* -------------------------------------
@@ -16,46 +19,32 @@
             })
 
             $(document).on('click', '#register-bt', function () {
+                let param = []
+                param['name'] = $('input[name="name"]').val();
+                param['name_kana'] = $('input[name="name_kana"]').val();
+                param['birth_year'] = $('select[name="birth_year"]').val();
+                param['birth_month'] = $('select[name="birth_month"]').val();
+                param['birth_date'] = $('select[name="birth_date"]').val();
+
+                /* -- バリデーション ---------------------*/
+                let validate = isValid(param);
+                if (!validate['result']) {
+                    let text = '';
+                    validate['message'].forEach((valid) =>{ text += '<li>' + valid + '</li>'; });
+                    $('#error-message').html(text);
+                    $('.alert').show();
+                    return false;
+                }
+
                 $('#staff-register-form').submit();
                 return false;
             });
 
-            /* -------------------------------------
-             画像削除
-            ------------------------------------- */
-            $(document).on('click', '#delete-photo-bt', function () {
-                let token = $('input[name="_token"]').val();
-                let url = '/image/staff/tmp/delete';
+            /*-----------------------------------------------
+            写真の選択処理
+            -----------------------------------------------*/
+            cropPhoto();
 
-                // Ajax通信を開始
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    dataType: 'json',
-                    // フォーム要素の内容をハッシュ形式に変換
-                    data: {
-                        '_token': token
-                    },
-                    timeout: 5000,
-                })
-                    .done(function (data) {
-                        console.log(data);
-                        if (data['result']) {
-                            $('#photo-box').html('<div class="image-box">' +
-                                '<img src="/image/staff/default" class="staff-image" width="250" />' +
-                                '<a href="/admin/staff/photo?type=register" class="btn btn-warning btn-sm">' +
-                                '写真を登録 ' +
-                                '</a>' +
-                                '<div>');
-                        } else {
-                            alert('削除失敗しました');
-                        }
-                    })
-                    .fail(function (data) {
-                        console.log(data);
-                    });
-                return false;
-            });
         });
     </script>
 @endsection
@@ -64,28 +53,51 @@
     <article>
         <h1>スタッフ登録</h1>
 
-        <section>
-            <form id="staff-register-form" method="post">
-                <table class="table table-striped table-bordered" id="event-register">
+        @if($is_staff_limit)
+            <p class="alert alert-danger" style="display: block;">５件が上限のため、これ以上登録はできません</p>
+        @else
+        <ul id="error-message" class="alert alert-danger">
+        </ul>
 
+        <section>
+            <form id="staff-register-form" method="post" enctype="multipart/form-data">
+                <table class="table table-striped table-bordered" id="event-register">
                     <!--= 写真登録 =======================-->
                     <tr>
                         <th>写真登録</th>
+
                         <td id="photo-box">
-                            <div class="image-box">
-                                <img src="/image/staff/default" class="staff-image" width="250"/><br>
+                            <p class="phone-title">写真登録</p>
+                            <section id="content-box" class="">
+                                <div id="face-photo-result"></div>
 
-                                <a href="/staff/photo?type=register" class="btn btn-warning btn-sm">
-                                    写真を登録
-                                </a>
-                            </div>
-{{--                            <div class="image-box">--}}
-{{--                                <img src="/image/staff/tmp" class="staff-image" width="250" height="250"/><br>--}}
+                                <div id="crop-result">
+                                    <img src=""><br>
+                                    <a href="" id="crop-delete-bt" class="btn btn-danger btn-sm">
+                                        削除する
+                                    </a>
+                                </div>
 
-{{--                                <a href="" class="btn btn-danger btn-sm" id="delete-photo-bt">--}}
-{{--                                    写真を削除--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
+                                <div id="select-bt">
+                                    <label for="staff-photo" class="photo-upload-btn btn btn-success btn-sm">
+                                        <span>画像選択</span>
+                                        <input type="file" name="photo" id="staff-photo"/>
+                                    </label>
+                                </div>
+
+                                <div id="croppie-bt-box">
+                                    <a href="" id="croppie-bt" class="btn btn-warning btn-sm">
+                                        確定する
+                                    </a>
+                                </div>
+
+                                <div class="js-cord">
+                                    <input type="hidden" name="x1">
+                                    <input type="hidden" name="y1">
+                                    <input type="hidden" name="x2">
+                                    <input type="hidden" name="y2">
+                                </div>
+                            </section>
                         </td>
                     </tr>
 
@@ -93,6 +105,7 @@
                     <tr>
                         <th>名前<span class="note">必須</span></th>
                         <td>
+                            <p class="phone-title">名前<span class="note">(必須)</span></p>
                             <input name="name" value="" class="form-control w500">
                             @error('name')
                             <span class="note">{{ $message }}</span>
@@ -104,6 +117,7 @@
                     <tr>
                         <th>なまえ(かな)<span class="note">必須</span></th>
                         <td>
+                            <p class="phone-title">なまえ(かな)<span class="note">(必須)</span></p>
                             <input name="name_kana" value="" class="form-control w500">
                             @error('name_kana')
                             <span class="note">{{ $message }}</span>
@@ -115,39 +129,44 @@
                     <tr>
                         <th>生年月日<span class="note">必須</span></th>
                         <td>
-                            <select name="year" class="form-control w100 middle-line">
-                                @foreach($year_item as $val)
-                                    <option value="{{$val['val']}}" {{old('year', $val['initialize']) == $val['val'] ? 'selected=selected':'' }}>{{$val['val']}}</option>
+                            <p class="phone-title">生年月日<span class="note">(必須)</span></p>
+                            <select name="birth_year" class="form-control w100 middle-line">
+                                @foreach($year_items as $val)
+                                    <option
+                                        value="{{$val['val']}}"
+                                        {{old('year', $val['initialize']) == $val['val'] ? 'selected=selected':'' }}>
+                                        {{$val['val']}}
+                                    </option>
                                 @endforeach
                             </select>
 
                             <p class="middle-line">年</p>
 
-                            <select name="month" class="form-control w50 middle-line">
-                                @foreach($month_item as $val)
+                            <select name="birth_month" class="form-control w50 middle-line">
+                                @foreach($month_items as $val)
                                     <option value="{{$val}}">{{$val}}</option>
                                 @endforeach
                             </select>
 
                             <p class="middle-line">月</p>
 
-                            <select name="date" class="form-control w50 middle-line">
-                                @foreach($date_item as $val)
+                            <select name="birth_date" class="form-control w50 middle-line">
+                                @foreach($date_items as $val)
                                     <option value="{{$val}}">{{$val}}</option>
                                 @endforeach
                             </select>
 
                             <p class="middle-line">日</p>
 
-                            @error('year')
+                            @error('birth_year')
                             <span class="note">{{ $message }}</span>
                             @enderror
 
-                            @error('month')
+                            @error('birth_month')
                             <span class="note">{{ $message }}</span>
                             @enderror
 
-                            @error('date')
+                            @error('birth_date')
                             <span class="note">{{ $message }}</span>
                             @enderror
                         </td>
@@ -157,13 +176,11 @@
                     <tr>
                         <th>表示設定</th>
                         <td>
-                            <select class="form-control w150">
+                            <p class="phone-title">表示設定</p>
+                            <select class="form-control w150" name="view_flag">
                                 <option value="0">表示しない</option>
                                 <option value="1">表示する</option>
                             </select>
-                            @error('name_kana')
-                            <span class="note">{{ $message }}</span>
-                            @enderror
                         </td>
                     </tr>
                 </table>
@@ -171,12 +188,14 @@
             </form>
 
             <div id="register-bt-box">
-                <a href="" class="btn btn-success" id="register-modal-bt">登録する</a>
+                <a href="" class="btn btn-info btn-sm" id="register-modal-bt">登録する</a>
             </div>
         </section>
+        @endif
     </article>
 
-    <section class="remodal" id="register-modal" data-remodal-id="register-modal" data-remodal-options="hashTracking:false">
+    <section class="remodal" id="register-modal" data-remodal-id="register-modal"
+             data-remodal-options="hashTracking:false">
         <h1>スタッフ登録</h1>
 
         <p>スタッフを登録しますか？</p>

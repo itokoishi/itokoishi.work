@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.not_view {
+  background: #efefef;
+}
+
 /* ----------------------------------------
  検索
 ---------------------------------------- */
@@ -13,24 +17,34 @@
 /* -------------------------------------
  一覧
 ------------------------------------- */
-table#staff-list {
+#staff-list {
   line-height: 1.6em;
 }
-table#staff-list th#image {
-  width: 115px;
+#staff-list .staff-content {
+  display: table;
 }
-table#staff-list th#name {
-  width: 250px;
+#staff-list .staff-content:last-child {
+  border-bottom: 1px solid #efefef;
 }
-table#staff-list th#shop {
-  width: 250px;
+#staff-list .staff-content div {
+  vertical-align: middle;
+  display: table-cell;
+  padding: 5px;
+  border-top: 1px solid #efefef;
+  border-left: 1px solid #efefef;
 }
-table#staff-list th#top,
-table#staff-list th#weight {
-  width: 55px;
+#staff-list .staff-content div.image {
+  width: 75px;
 }
-table#staff-list th#twitter-id {
-  width: 100px;
+#staff-list .staff-content div.image img {
+  width: 100%;
+  border-radius: 50%;
+}
+#staff-list .staff-content div.name {
+  width: 150px;
+}
+#staff-list .staff-content div.bt-box {
+  border-right: 1px solid #efefef;
 }
 
 /* -------------------------------------
@@ -58,33 +72,50 @@ table#staff-list th#twitter-id {
 /* ----------------------------------------
  写真ページ
 ---------------------------------------- */
-#photo-content {
-  width: 750px;
+#photo-box #content-box {
+  max-width: 500px;
   /*-- 登録 ---------------------*/
 }
-#photo-content #select-bt {
+#photo-box #content-box #select-bt {
   text-align: center;
 }
-#photo-content .photo-upload-btn {
+#photo-box #content-box .photo-upload-btn {
   margin: 0 0 20px 0;
 }
-#photo-content .photo-upload-btn input {
+#photo-box #content-box .photo-upload-btn input {
   display: none;
 }
-#photo-content .photo-upload-btn input.cr-slider {
+#photo-box #content-box .photo-upload-btn input.cr-slider {
   border: none !important;
 }
-#photo-content .photo-upload-btn .croppie-container .cr-viewport {
+#photo-box #content-box .photo-upload-btn .croppie-container .cr-viewport {
   border: none !important;
 }
-#photo-content .photo-upload-btn #twitter-user {
+#photo-box #content-box .photo-upload-btn #twitter-user {
   padding: 30px;
 }
-#photo-content #register-photo {
+#photo-box #content-box #register-photo {
   text-align: center;
 }
-#photo-content #register-photo #register-photo-bt {
+#photo-box #content-box #register-photo #register-photo-bt {
   margin: 0 0 10px 0;
+}
+#photo-box #content-box #crop-delete-box {
+  display: none;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+#photo-box #content-box #crop-result {
+  display: none;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+#photo-box #content-box #crop-result img {
+  margin: 0 0 10px 0;
+}
+#photo-box #content-box #croppie-bt-box {
+  text-align: center;
+  display: none;
 }
 
 /*# sourceMappingURL=staff.css.map */

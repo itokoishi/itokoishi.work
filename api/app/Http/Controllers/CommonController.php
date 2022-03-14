@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use Exception;
+use JetBrains\PhpStorm\Pure;
+use stdClass;
 
 class CommonController extends Controller
 {
@@ -45,5 +47,21 @@ class CommonController extends Controller
         ストレージパス
         -----------------------------------------------*/
         $this->_storage_path = config('app.storage_path');
+    }
+
+
+    /**
+     * メッセージ作成
+     * @param string $tag
+     * @param array $message
+     * @return stdClass
+     */
+    #[Pure] protected function _getResultMessage(string $tag, array $message): stdClass
+    {
+        $result = new stdClass();
+        $result->tag = $tag;
+        $result->messages = $message;
+
+        return $result;
     }
 }
