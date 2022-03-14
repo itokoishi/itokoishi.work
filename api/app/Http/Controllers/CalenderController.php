@@ -71,7 +71,7 @@ class CalenderController extends CommonController
     }
 
     /**
-     * アップデート処理
+     * アップデート
      * @param Request $request
      * @param         $id
      * @return false|string
@@ -83,6 +83,24 @@ class CalenderController extends CommonController
         return json_encode(['id'=>$id]);
     }
 
+
+    /**
+     * 削除
+     * @param $id
+     * @return bool|string
+     */
+    public function destroy($id): bool|string
+    {
+        Schedule::query()->where('id', $id)->delete();
+        return json_encode(['id'=>$id]);
+    }
+
+    /**
+     * DBアップデート
+     * @param $request
+     * @param $id
+     * @return void
+     */
     private function _updateSchedule($request, $id)
     {
         $schedule = Schedule::query()->find($id);
@@ -92,6 +110,11 @@ class CalenderController extends CommonController
         $schedule->save();
     }
 
+    /**
+     * DBインサート
+     * @param $request
+     * @return mixed
+     */
     private function _insertSchedule($request)
     {
         $schedule = new Schedule();
