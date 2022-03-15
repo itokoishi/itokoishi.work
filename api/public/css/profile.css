@@ -1,3 +1,84 @@
+#prof-box {
+  display: table;
+  margin: 0 0 20px 0;
+  width: 100%;
+}
+#prof-box #profile {
+  display: table-cell;
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#prof-box #profile .name {
+  text-align: center;
+  font-size: 28px;
+  vertical-align: middle;
+  margin: 0 0 10px 0;
+  line-height: 1em;
+}
+#prof-box #profile .name span {
+  font-size: 14px;
+}
+#prof-box #profile .content {
+  padding: 10px;
+  background: #fffbd4;
+}
+#prof-box #profile .content li {
+  padding: 2px;
+}
+#prof-box #greeting {
+  display: table-cell;
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#prof-box #greeting .text {
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px dashed #a2d0b5;
+  border-radius: 5px;
+}
 
+#occupation {
+  display: table;
+  background: #daf4e5;
+  width: 100%;
+  margin: 0 0 20px 0;
+}
+#occupation dt {
+  display: table-cell;
+  text-align: center;
+  width: 70px;
+  padding: 10px;
+  background: #245152;
+  color: #FFFFFF;
+  font-size: 12px;
+}
+#occupation dd {
+  display: table-cell;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+#experience-chart {
+  width: 100%;
+  height: 500px;
+  margin: 0 0 20px 0;
+}
+
+table th {
+  font-weight: normal;
+  width: 200px;
+}
+table th span {
+  font-size: 12px;
+}
+table td dt {
+  margin: 0 0 5px 0;
+}
+table td dd {
+  margin: 0 0 5px 0;
+}
 
 /*# sourceMappingURL=profile.css.map */
