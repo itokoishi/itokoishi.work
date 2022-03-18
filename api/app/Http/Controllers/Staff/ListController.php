@@ -43,11 +43,14 @@ class ListController extends CommonController
 
         if(!empty($id)){
             $image_name = Staff::getImage($id);
-            $staff_image = $this->_storage_path . 'staff/' . $image_name;
-            if(file_exists($staff_image)){
-                unlink($staff_image);
+
+            if(!empty($image_name)){
+                $staff_image = $this->_storage_path . 'staff/' . $image_name;
+                if(file_exists($staff_image)){
+                    unlink($staff_image);
+                }
+                Staff::deleteImage($id);
             }
-            Staff::deleteImage($id);
         }
 
         Staff::query()->where('id', $id)->delete();
