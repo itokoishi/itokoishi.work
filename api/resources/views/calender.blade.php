@@ -24,6 +24,7 @@
                 $('input[name="before_date"]').val('');
                 $('#modify-bt').attr('id', 'register-bt');
 
+                $('#delete-bt').hide();
                 $('#register-bt').text('登録する');
                 $('#register-modal h1').text('スケジュール登録');
                 $('#register-modal').remodal().open();
@@ -93,6 +94,7 @@
                 $('textarea[name="memo"]').val(memo);
                 $('input[name="before_date"]').val(beforeDate);
 
+                $('#delete-bt').show();
                 $('#register-bt').text('更新する');
                 $('#register-modal h1').text('スケジュール更新');
                 $('#register-bt').attr('id', 'modify-bt');
