@@ -283,7 +283,7 @@
             <input type="hidden" name="id" value=""/>
             <input type="hidden" name="_method" value=""/>
             @csrf
-            <div id="register-bt-box">
+            <div id="calender-register-bt-box">
                 <a data-remodal-action="cancel" class="remodal-cancel">閉じる</a>
                 <a data-remodal-action="confirm" class="remodal-confirm" id="register-bt">登録する</a>
             </div>
