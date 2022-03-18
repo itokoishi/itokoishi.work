@@ -608,6 +608,11 @@ table td .phone-title {
   }
 }
 
+#calender-register-bt-box {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
 #smart-register-bt {
   position: fixed;
   bottom: 20px;
