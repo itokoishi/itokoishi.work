@@ -20,6 +20,12 @@
                 $('input[name="date"]').val('');
                 $('textarea[name="memo"]').val('');
                 $('input[name="_method"]').val('');
+                $('input[name="id"]').val('');
+                $('input[name="before_date"]').val('');
+                $('#modify-bt').attr('id', 'register-bt');
+
+                $('#register-bt').text('登録する');
+                $('#register-modal h1').text('スケジュール登録');
                 $('#register-modal').remodal().open();
                 return false;
             });
@@ -89,7 +95,7 @@
 
                 $('#register-bt').text('更新する');
                 $('#register-modal h1').text('スケジュール更新');
-                $('#register-bt').attr('id', 'modify-bt')
+                $('#register-bt').attr('id', 'modify-bt');
 
                 $('#register-modal').remodal().open();
                 return false;
