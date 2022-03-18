@@ -16,3 +16,4 @@ yarn-error.log
 ProfileController.php
 profile.blade.php
 profile.scss
+/public/images/

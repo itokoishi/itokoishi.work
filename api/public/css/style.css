@@ -206,16 +206,17 @@ header h1 {
   height: 40px;
   cursor: pointer;
   z-index: 50;
-  background: #333333;
+  border-radius: 3px;
+  background: #096e5b;
 }
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   #hamburger-btn {
     display: none;
   }
 }
 #hamburger-btn .line {
   position: absolute;
-  top: 0;
+  top: -5px;
   left: 10px;
   width: 22px;
   height: 2px;
@@ -267,7 +268,7 @@ header h1 {
   opacity: 1;
   display: block;
 }
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   #menu.menu-open {
     display: none;
   }
@@ -277,12 +278,12 @@ header h1 {
   transition: opacity 0.4s;
   opacity: 0;
 }
-@media (min-width: 600px) {
+@media (min-width: 540px) {
   #menu {
     width: 35%;
   }
 }
-@media (min-width: 1025px) {
+@media (min-width: 1023px) {
   #menu {
     width: 25%;
   }
@@ -326,7 +327,7 @@ main {
    メインコンテンツ
   ------------------------------------- */
 }
-@media (min-width: 600px) {
+@media (min-width: 540px) {
   main {
     min-width: 820px;
   }
@@ -336,7 +337,7 @@ main aside {
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
   /*-- ナビゲーション ---------------------*/
 }
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   main aside {
     display: block;
     margin: 0 20px 0 0;
@@ -382,7 +383,7 @@ main #main-content {
   background: #FFFFFF;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
 }
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   main #main-content {
     width: 80%;
     padding: 20px 20px 100px 20px;
@@ -571,7 +572,7 @@ table th {
   color: #ffffff;
   display: none;
 }
-@media (min-width: 750px) {
+@media (min-width: 540px) {
   table th {
     display: table-cell;
   }
@@ -584,7 +585,7 @@ table td .phone-title {
   display: block;
   padding: 5px;
 }
-@media (min-width: 750px) {
+@media (min-width: 540px) {
   table td .phone-title {
     display: none;
   }
@@ -601,7 +602,7 @@ table td .phone-title {
   margin: 0 0 20px 0;
   display: none;
 }
-@media (min-width: 600px) {
+@media (min-width: 540px) {
   #register-bt-box {
     display: block;
   }

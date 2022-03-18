@@ -112,7 +112,7 @@
             <!--== ナビゲーション ===================-->
             <nav>
                 <ul>
-                    <li><a href="/">トップ</a></li>
+                    <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/calender">カレンダー</a></li>
                     <li><a href="/shift">シフト管理</a></li>
                     <li><a href="/staff/list">スタッフ管理</a></li>
