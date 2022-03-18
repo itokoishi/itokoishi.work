@@ -1,7 +1,7 @@
 @extends('layouts.front-main')
 
 @section('page-css')
-    <link rel="stylesheet" href="/css/calender.css">
+    <link rel="stylesheet" href="/css/calender.css?2022031801">
 @endsection
 
 @section('page-js')

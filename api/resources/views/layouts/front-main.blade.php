@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/remodal/remodal-default-theme.css">
 
     <link type="text/css" rel="stylesheet" href="/css/reset.css">
-    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css?2022031801">
 
     <!--== ページCSS ===================-->
     @yield('page-css')
