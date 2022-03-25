@@ -1,0 +1,545 @@
+{% extends 'layouts/admin-base.html' %}
+{% load static %}
+
+{% block page-css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/estimation.css' %}?2021042102">
+{% endblock %}
+
+{% block page-js %}
+    <script>
+        $(function () {
+            /* -------------------------------------
+             ボタン
+            ------------------------------------- */
+            $(document).on('change', 'input[name="button"]', function () {
+                if ($(this).val() === '2') {
+                    $('input[name="button_position"]').show();
+                } else {
+                    $('input[name="button_position"]').hide();
+                }
+                return false;
+            });
+
+            /* -------------------------------------
+             タッチパネル
+            ------------------------------------- */
+            $(document).on('change', 'input[name="touch_panel"]', function () {
+                if ($(this).val() === '2') {
+                    $('input[name="touch_panel_position"]').show();
+                } else {
+                    $('input[name="touch_panel_position"]').hide();
+                }
+                return false;
+            });
+
+            /* -------------------------------------
+             キズ説明
+            ------------------------------------- */
+            $(document).on('change', 'select[name="scratch_mini"]', function () {
+                if ($(this).val() > 0) {
+                    $('input[name="scratch_mini_position"]').show();
+                } else {
+                    $('input[name="scratch_mini_position"]').hide();
+                }
+                return false;
+            });
+            $(document).on('change', 'select[name="scratch_middle"]', function () {
+                if ($(this).val() > 0) {
+                    $('input[name="scratch_middle_position"]').show();
+                } else {
+                    $('input[name="scratch_middle_position"]').hide();
+                }
+                return false;
+            });
+            $(document).on('change', 'select[name="scratch_big"]', function () {
+                if ($(this).val() > 0) {
+                    $('input[name="scratch_big_position"]').show();
+                } else {
+                    $('input[name="scratch_big_position"]').hide();
+                }
+                return false;
+            });
+
+
+            /* -------------------------------------
+             ネットワーク制限
+            ------------------------------------- */
+            $(document).on('change', 'input[name="network_type"]', function () {
+                if ($(this).val() === '2') {
+                    $('#network-limits').show();
+                } else {
+                    $('#network-limits').hide();
+                }
+                return false;
+            });
+
+            /* -------------------------------------
+             ネットワーク制限
+            ------------------------------------- */
+            $(document).on('change', 'select[name="shortage"]', function () {
+                if ($(this).val() >= 1) {
+                    $('textarea[name="shortage_item"]').show();
+                } else {
+                    $('textarea[name="shortage_item"]').hide();
+                }
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <article>
+        <h1>Apple買取査定</h1>
+
+        <div id="search-link-box">
+            <a href="/admin/market-price" class="btn btn-info btn-sm" target="_blank">査定価格検索</a>
+        </div>
+
+        <section id="estimation-register">
+            <p class="note">※最高買取価格から減算方式となります。</p>
+            <table class="table table-bordered">
+                <!--== 最高買取価格 ===================-->
+                <tr>
+                    <th>最高買取価格</th>
+                    <td><input type="text" class="form-control w150" name="" value=""></td>
+                </tr>
+
+                <!--== 買取査定ID ===================-->
+                <tr>
+                    <th>買取査定ID</th>
+                    <td><input type="text" class="form-control w150" name="" value=""></td>
+                </tr>
+
+                <!--== 項目 ===================-->
+                <tr>
+                    <th>ジャンル</th>
+                    <td>
+                        <select class="form-control w200">
+                            <option>スマートフォン</option>
+                            <option>タブレット</option>
+                            <option>ノートパソコン</option>
+                            <option>デスクトップパソコン</option>
+                            <option>スマートウォッチ</option>
+                            <option>ゲーム本体</option>
+                            <option>周辺機器</option>
+                            <option>その他</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!--== 名称 ===================-->
+                <tr>
+                    <th>名称</th>
+                    <td><input type="text" class="form-control w500" name="name" value=""></td>
+                </tr>
+
+                <!--== 型番 ===================-->
+                <tr>
+                    <th>型番</th>
+                    <td><input type="text" class="form-control w150" name="model_no" value=""></td>
+                </tr>
+
+                <!--== 種類 ===================-->
+                <tr>
+                    <th>通信種類</th>
+                    <td>
+                        <input id="network-type1" type="radio" name="network_type" value="0" checked/>
+                        <label class="radio-label" for="network-type1">未搭載</label>
+
+                        <input id="network-type2" type="radio" name="network_type" value="1"/>
+                        <label class="radio-label" for="network-type2">wifi</label>
+
+                        <input id="network-type3" type="radio" name="network_type" value="2"/>
+                        <label class="radio-label" for="network-type3">セルラー</label>
+                    </td>
+                </tr>
+
+                <!--== 通信制限 ===================-->
+                <tr id="network-limits">
+                    <th>ネットワーク利用制限</th>
+                    <td>
+                        <input id="network-limits1" type="radio" name="network_limits" value="0" checked/>
+                        <label class="radio-label" for="network-limits1">○</label>
+
+                        <input id="network-limits2" type="radio" name="network_limits" value="1"/>
+                        <label class="radio-label" for="network-limits2">△</label>
+
+                        <input id="network-limits3" type="radio" name="network_limits" value="2"/>
+                        <label class="radio-label" for="network-limits3">×</label>
+                    </td>
+                </tr>
+
+                <!--== バッテリー残量 ===================-->
+                <tr>
+                    <th>バッテリー残量</th>
+                    <td>
+                            <span class="middle-line">
+                                <input type="text" class="form-control w100" name="battery_amount" value="">
+                            </span>
+                        <span class="middle-line">％</span>
+                    </td>
+                </tr>
+
+                <!--== 中古状態 ===================-->
+                <tr>
+                    <th>中古状態</th>
+                    <td>
+                        <input id="status1" type="radio" name="status" value="1" checked/>
+                        <label class="radio-label" for="status1">中古</label>
+
+                        <input id="status2" type="radio" name="status" value="2"/>
+                        <label class="radio-label" for="status2">未使用</label>
+                    </td>
+                </tr>
+
+                <!--== Bluetooth ===================-->
+                <tr>
+                    <th>Bluetooth</th>
+                    <td>
+                        <input id="bluetooth1" type="radio" name="bluetooth" value="0" checked/>
+                        <label class="radio-label" for="bluetooth1">未搭載</label>
+
+                        <input id="bluetooth2" type="radio" name="bluetooth" value="1"/>
+                        <label class="radio-label" for="bluetooth2">良好</label>
+
+                        <input id="bluetooth3" type="radio" name="bluetooth" value="2"/>
+                        <label class="radio-label" for="bluetooth3">不具合</label>
+                    </td>
+                </tr>
+
+                <!--== ネットワーク機能 ===================-->
+                <tr>
+                    <th>ネットワーク機能</th>
+                    <td>
+                        <input id="network1" type="radio" name="network_amount" value="0" checked>
+                        <label class="radio-label" for="network1">未搭載</label>
+
+                        <input id="network2" type="radio" name="network_amount" value="1">
+                        <label class="radio-label" for="network2">良好</label>
+
+                        <input id="network3" type="radio" name="network_amount" value="2">
+                        <label class="radio-label" for="network3">不具合</label>
+                    </td>
+                </tr>
+
+                <!--== スピーカー ===================-->
+                <tr>
+                    <th>スピーカー</th>
+                    <td>
+                        <input id="speaker1" type="radio" name="speaker" value="0" checked/>
+                        <label class="radio-label" for="speaker1">未搭載</label>
+
+                        <input id="speaker2" type="radio" name="speaker" value="1"/>
+                        <label class="radio-label" for="speaker2">良好</label>
+
+                        <input id="speaker3" type="radio" name="speaker" value="2"/>
+                        <label class="radio-label" for="speaker3">不具合</label>
+                    </td>
+                </tr>
+
+                <!--== バイブレータ ===================-->
+                <tr>
+                    <th>バイブレータ</th>
+                    <td>
+                        <input id="vibrator1" type="radio" name="vibrator" value="0" checked/>
+                        <label class="radio-label" for="vibrator1">未搭載</label>
+
+                        <input id="vibrator2" type="radio" name="vibrator" value="1"/>
+                        <label class="radio-label" for="vibrator2">良好</label>
+
+                        <input id="vibrator3" type="radio" name="vibrator" value="2"/>
+                        <label class="radio-label" for="vibrator3">不具合</label>
+                    </td>
+                </tr>
+
+                <!--== 通話 ===================-->
+                <tr>
+                    <th>通話</th>
+                    <td>
+                        <input id="call-function1" type="radio" name="call_function" value="0" checked/>
+                        <label class="radio-label" for="call-function1">未搭載</label>
+
+                        <input id="call-function2" type="radio" name="call_function" value="1"/>
+                        <label class="radio-label" for="call-function2">良好</label>
+
+                        <input id="call-function3" type="radio" name="call_function" value="2"/>
+                        <label class="radio-label" for="call-function3">不具合</label>
+                    </td>
+                </tr>
+
+                <!--== カメラ機能 ===================-->
+                <tr>
+                    <th>カメラ機能</th>
+                    <td>
+                        <div class="item-content">
+                            <span class="middle-line item-title">内側：</span>
+                            <span class="middle-line">
+                                    <input id="inner-camera1" type="radio" name="inner_camera" value="0" checked/>
+                                    <label class="radio-label" for="inner-camera1">未搭載</label>
+
+                                    <input id="inner-camera2" type="radio" name="inner_camera" value="1"/>
+                                    <label class="radio-label" for="inner-camera2">良好</label>
+
+                                    <input id="inner-camera3" type="radio" name="inner_camera" value="2"/>
+                                    <label class="radio-label" for="inner-camera3">不具合</label>
+                                </span>
+                        </div>
+
+                        <div class="item-content last">
+                            <span class="middle-line item-title">外側：</span>
+                            <span class="middle-line">
+                                    <input id="outer-camera1" type="radio" name="outer_camera" value="0" checked/>
+                                    <label class="radio-label" for="outer-camera1">未搭載</label>
+
+                                    <input id="outer-camera2" type="radio" name="outer_camera" value="1"/>
+                                    <label class="radio-label" for="outer-camera2">良好</label>
+
+                                    <input id="outer-camera3" type="radio" name="outer_camera" value="2"/>
+                                    <label class="radio-label" for="outer-camera3">不具合</label>
+                                </span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!--== ボタン機能 ===================-->
+                <tr>
+                    <th>ボタン機能</th>
+                    <td>
+                        <input id="button1" type="radio" name="button" value="0" checked>
+                        <label class="radio-label" for="button1">未搭載</label>
+
+                        <input id="button2" type="radio" name="button" value="1">
+                        <label class="radio-label" for="button2">良好</label>
+
+                        <input id="button3" type="radio" name="button" value="2">
+                        <label class="radio-label" for="button3">不具合</label>
+
+                        <input type="text" name="button_position" value=""
+                               class="form-control w500" placeholder="不具合ボタン箇所を入力してください">
+                    </td>
+                </tr>
+
+                <!--== タッチパネル ===================-->
+                <tr>
+                    <th>タッチパネル</th>
+                    <td>
+                        <input id="touch-panel1" type="radio" name="touch_panel" value="0" checked>
+                        <label class="radio-label" for="touch-panel1">未搭載</label>
+
+                        <input id="touch-panel2" type="radio" name="touch_panel" value="1">
+                        <label class="radio-label" for="touch-panel2">良好</label>
+
+                        <input id="touch-panel3" type="radio" name="touch_panel" value="2">
+                        <label class="radio-label" for="touch-panel3">一部不具合</label>
+
+                        <input id="touch-panel4" type="radio" name="touch_panel" value="3">
+                        <label class="radio-label" for="touch-panel4">不具合</label>
+
+                        <input type="text" name="touch_panel_position" value=""
+                               class="form-control w500" placeholder="不具合の箇所を入力してください">
+                    </td>
+                </tr>
+
+                <!--== キー操作 ===================-->
+                <tr>
+                    <th>キー操作</th>
+                    <td>
+                        <input id="key−operation1" type="radio" name="key_operation" value="0" checked>
+                        <label class="radio-label" for="key−operation1">未搭載</label>
+
+                        <input id="key−operation2" type="radio" name="key_operation" value="1">
+                        <label class="radio-label" for="key−operation2">良好</label>
+
+                        <input id="key−operation3" type="radio" name="key_operation" value="2">
+                        <label class="radio-label" for="key−operation3">不具合</label>
+                    </td>
+                </tr>
+
+                <!--== 充電 ===================-->
+                <tr>
+                    <th>充電</th>
+                    <td>
+                        <input id="battery1" type="radio" name="battery" value="0" checked>
+                        <label class="radio-label" for="battery1">未搭載</label>
+
+                        <input id="battery2" type="radio" name="battery" value="1">
+                        <label class="radio-label" for="battery2">良好</label>
+
+                        <input id="battery3" type="radio" name="battery" value="2">
+                        <label class="radio-label" for="battery3">不具合</label>
+                    </td>
+                </tr>
+
+                <!--== 水没 ===================-->
+                <tr>
+                    <th>水没</th>
+                    <td>
+                        <input id="submerge3" type="radio" name="submerge" value="0" checked>
+                        <label class="radio-label" for="submerge3">なし</label>
+
+                        <input id="submerge2" type="radio" name="submerge" value="1">
+                        <label class="radio-label" for="submerge2">有り</label>
+                    </td>
+                </tr>
+
+                <!--== キズの状態 ===================-->
+                <tr>
+                    <th>キズの状態</th>
+                    <td>
+                        <div class="item-content">
+                            <span class="middle-line">キズ小</span>
+                            <span class="middle-line">
+                                <select class="form-control w100" name="scratch_mini">
+                                    <option value="0">なし</option>
+                                    <option value="1">1個</option>
+                                    <option value="2">2個</option>
+                                    <option value="3">3個</option>
+                                    <option value="4">多数</option>
+                                </select>
+                             </span>
+
+                            <span class="middle-line">
+                                <input type="text" name="scratch_mini_position" value=""
+                                       class="form-control w500" placeholder="キズの箇所を入力してください">
+                             </span>
+                        </div>
+
+                        <div class="item-content">
+                            <span class="middle-line">キズ中</span>
+                            <span class="middle-line">
+                                <select class="form-control w100" name="scratch_middle">
+                                    <option value="0">なし</option>
+                                    <option value="1">1個</option>
+                                    <option value="2">2個</option>
+                                    <option value="3">3個</option>
+                                    <option value="4">多数</option>
+                                </select>
+                             </span>
+
+                            <span class="middle-line">
+                                <input type="text" name="scratch_middle_position" value=""
+                                       class="form-control w500" placeholder="キズの箇所を入力してください">
+                            </span>
+                        </div>
+
+                        <div class="item-content last">
+                            <span class="middle-line">キズ大</span>
+                            <span class="middle-line">
+                                <select class="form-control w100" name="scratch_big">
+                                    <option value="0">なし</option>
+                                    <option value="1">1個</option>
+                                    <option value="2">2個</option>
+                                    <option value="3">3個</option>
+                                    <option value="4">多数</option>
+                                </select>
+                             </span>
+
+                            <span class="middle-line">
+                                <input type="text" name="scratch_big_position" value=""
+                                       class="form-control w500" placeholder="キズの箇所を入力してください">
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!--== 液晶の状態 ===================-->
+                <tr>
+                    <th>液晶の状態</th>
+                    <td id="liquid-crystal">
+                        <label class="checkbox" for="liquid_crystal1">
+                            <input type="checkbox" value="" id="liquid_crystal1"
+                                   name="liquid_crystal_scratch" data-toggle="checkbox" class="custom-checkbox">
+                            <span class="icons">
+                                    <span class="icon-unchecked"></span>
+                                    <span class="icon-checked"></span>
+                                </span>
+                            キズ
+                        </label>
+
+                        <label class="checkbox" for="liquid_crystal2">
+                            <input type="checkbox" value="" id="liquid_crystal2"
+                                   name="liquid_crystal_crack" data-toggle="checkbox" class="custom-checkbox">
+                            <span class="icons">
+                                    <span class="icon-unchecked"></span>
+                                    <span class="icon-checked"></span>
+                                </span>
+                            ヒビ
+                        </label>
+
+                        <label class="checkbox" for="liquid_crystal4">
+                            <input type="checkbox" value="" id="liquid_crystal4"
+                                   name="color_unevenness" data-toggle="checkbox" class="custom-checkbox">
+                            <span class="icons">
+                                    <span class="icon-unchecked"></span>
+                                    <span class="icon-checked"></span>
+                                </span>
+                            色ムラ
+                        </label>
+
+                        <label class="checkbox" for="liquid_crystal5">
+                            <input type="checkbox" value="" id="liquid_crystal5"
+                                   name="liquid_crystal_leak" data-toggle="checkbox" class="custom-checkbox">
+                            <span class="icons">
+                                    <span class="icon-unchecked"></span>
+                                    <span class="icon-checked"></span>
+                                </span>
+                            漏れ
+                        </label>
+
+                        <label class="checkbox" for="liquid_crystal6">
+                            <input type="checkbox" value="" id="liquid_crystal6"
+                                   name="liquid_crystal_float" data-toggle="checkbox" class="custom-checkbox">
+                            <span class="icons">
+                                    <span class="icon-unchecked"></span>
+                                    <span class="icon-checked"></span>
+                                </span>
+                            浮き
+                        </label>
+                    </td>
+                </tr>
+
+                <!--== 欠品 ===================-->
+                <tr>
+                    <th>欠品</th>
+                    <td>
+                        <select class="form-control w150" name="shortage" id="shortage">
+                            <option value="0">なし</option>
+                            <option value="1">1個</option>
+                            <option value="2">2個</option>
+                            <option value="3">3個</option>
+                            <option value="4">4個</option>
+                            <option value="5">5個</option>
+                            <option value="6">全て</option>
+                        </select>
+                        <textarea class="form-control w500" name="shortage_item" id="shortage-item"
+                                  placeholder="欠品を入力してください"></textarea>
+                    </td>
+                </tr>
+
+                <!--== 備考欄 ===================-->
+                <tr>
+                    <th>備考欄</th>
+                    <td>
+                        <textarea class="form-control w500"></textarea>
+                    </td>
+                </tr>
+
+                <!--== 手動減額設定 ===================-->
+                <tr>
+                    <th>手動減額設定</th>
+                    <td>
+                            <span class="middle-line">
+                                <input type="text" name="" value="" class="form-control w200">
+                            </span>
+                        <span class="middle-line">円</span>
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                <a href="" class="btn btn-success">査定する</a>
+            </div>
+        </section>
+    </article>
+{% endblock %}

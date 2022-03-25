@@ -1,0 +1,66 @@
+@charset "UTF-8";
+#search-link-box{
+    margin: 0 0 10px 0;
+}
+
+#estimation-list{
+    table{
+        width: 750px;
+
+        th{
+            &#bt-box{
+                width: 150px;
+            }
+        }
+    }
+}
+
+#estimation-register{
+    .checkbox input[type="checkbox"].custom-checkbox:checked + .icons{
+        color: #4d90fe;
+    }
+
+    table{
+        width: 100%;
+
+        tr{
+            &#network-limits{
+                display: none;
+            }
+        }
+
+        th{
+            width: 180px;
+        }
+
+        td{
+            .item-content{
+                margin: 0 0 10px 0;
+
+                &.last{
+                    margin: 0;
+                }
+
+                &:last-child{
+                    border-bottom: none;
+                    padding: 0;
+                }
+
+                .item-title{
+                    font-size: 16px;
+                }
+            }
+
+            input[name="button_position"],
+            input[name="touch_panel_position"],
+            textarea[name="shortage_item"],
+            input[name="scratch_mini_position"],
+            input[name="scratch_middle_position"],
+            input[name="scratch_big_position"]
+            {
+                display: none;
+                margin: 10px 0 0 0;
+            }
+        }
+    }
+}

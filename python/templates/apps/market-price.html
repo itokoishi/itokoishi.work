@@ -1,0 +1,142 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page-css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/apps/market-price.css' %}?2021041601">
+{% endblock %}
+
+{% block page-js %}
+    <script>
+        $(function () {
+            $(document).on('click', '#search-bt', function () {
+                $("#estimation-form").submit();
+                return false;
+            })
+
+            $(document).on('click', '.exclusion', function () {
+                if ($(this).prop('checked')) {
+                    $(this).parents('tr').removeClass('active-price')
+                    $(this).parents('tr').attr('style', 'background:#000000;')
+                } else {
+                    $(this).parents('tr').addClass('active-price')
+                    $(this).parents('tr').attr('style', '')
+                }
+
+                let count = $("#search-result-box tr.active-price").length;
+                let amount = 0
+                $('tr.active-price .item-price').each(function () {
+                    amount += Number($(this).text().replace(/[^0-9]/g, ''));
+                });
+
+                let average = parseInt(amount / count);
+                let fee = parseInt(average * 0.08)
+                let S_BuyPrice = Math.floor(average - fee);
+                let A_BuyPrice = Math.floor(S_BuyPrice - (S_BuyPrice * 0.05));
+                let B_BuyPrice = Math.floor(S_BuyPrice - (S_BuyPrice * 0.1));
+                let C_BuyPrice = Math.floor(S_BuyPrice - (S_BuyPrice * 0.2));
+
+                $('#price-average').text(average.toLocaleString());
+                $('#price-fee').text(fee.toLocaleString());
+                $('#a-buy-price').text('Aランク：' + A_BuyPrice.toLocaleString());
+                $('#b-buy-price').text('Bランク：' + B_BuyPrice.toLocaleString());
+                $('#c-buy-price').text('Cランク：' + C_BuyPrice.toLocaleString());
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <article>
+        <h1>買取見積もり</h1>
+
+        <!--= 検索 =======================-->
+        <section id="search-box">
+            <p class="title">平均価格検索</p>
+            <form id="estimation-form">
+                <input id="search" class="form-control middle-line w300" name="search_text" placeholder="品名"
+                       value="{{ search_text }}"/>
+                <input id="search" class="form-control middle-line w300" name="exclusion_text" placeholder="除外テキスト"
+                       value="{{ exclusion_text }}"/>
+                <a href="" id="search-bt" class="btn btn-sm btn-success middle-line">検索</a>
+            </form>
+
+            <p class="note">
+                ※ヤフオクの落札平均価格を出力します。曖昧な検索の場合、異なる商品も含まれる場合があるため、<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;型番を入力、または商品詳細（「PS5 本体」「銘柄 容量 ％」等）まで入力してください。<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;初めての場合は、一度ヤフオク落札相場の検索を行って、製品が絞り込めるキーワードを作成してください。<br>
+                ※価格は秒単位で変動しますので、当日買取がすでにある場合はそちらを参考に価格を決めてください。<br>
+                ※あくまで参考の上限金額となりますので、必ず状態確認を行ってください。<br>
+            </p>
+        </section>
+
+        <section id="result-error">
+            <span class="alert alert-danger alert-block"></span>
+        </section>
+
+        <!--== 金額計算 ===================-->
+        <section id="price-box">
+            <table>
+                <tr>
+                    <th class="sub-price">ヤフオク落札平均:</th>
+                    <td class="sub-price">
+                        {% if not price_average %}
+                            <span id="price-average">0</span>円
+                        {% else %}
+                            <span id="price-average">{{ price_average }}</span>円
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr id="fee">
+                    <th class="sub-price">ヤフオク手数料:</th>
+                    <td class="sub-price">
+                        {% if not fee %}
+                            <span id="price-fee">0</span>円
+                        {% else %}
+                            <span id="price-fee">{{ fee }}</span>円
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr id="price-average">
+                    <th class="price">参考買取金額:</th>
+                    <td class="price">
+                        {% if not s_buy_price %}
+                            <span id="buy-price">0</span>円
+                        {% else %}
+                            <span id="a-buy-price">Aランク：{{ a_buy_price }}</span>円<br>
+                            <span id="b-buy-price">Bランク：{{ b_buy_price }}</span>円<br>
+                            <span id="c-buy-price">Cランク：{{ c_buy_price }}</span>円<br>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!--== 結果 ===================-->
+        <section id="search-result-box">
+            <h1>検索結果</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th class="check"></th>
+                    <th class="image">画像</th>
+                    <th class="name">商品名</th>
+                    <th class="price">金額</th>
+                </tr>
+                {% for val in search_content %}
+                    <tr class="active-price">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="middle-line exclusion"/>
+                                <span class="middle-line">除外する</span>
+                            </label>
+                        </td>
+                        <td><img src="{{ val.image }}" style="width: 100px; height: 100px"></td>
+                        <td>{{ val.title }}</td>
+                        <td class="item-price">{{ val.price }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </article>
+{% endblock %}

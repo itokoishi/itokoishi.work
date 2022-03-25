@@ -1,0 +1,72 @@
+#result-error {
+  margin: 20px 0;
+  padding: 20px;
+  display: none;
+}
+
+#market-price-form {
+  margin: 0 0 10px 0;
+}
+
+#price-box {
+  margin: 0 0 30px 0;
+  width: 40%;
+  border: 2px solid #efefef;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 10px;
+  right: 30px;
+  background: #ffffff;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+}
+#price-box table {
+  width: 100%;
+}
+#price-box table tr {
+  margin: 0 0 10px 0;
+}
+#price-box table tr .sub-price {
+  font-size: 14px;
+}
+#price-box table tr .price {
+  font-size: 18px;
+}
+#price-box table tr .price span {
+  margin: 0 0 5px 0;
+}
+#price-box table tr .price span:last-child {
+  margin: 0;
+}
+#price-box table tr td {
+  text-align: right;
+}
+
+#search-result-box h1 {
+  font-size: 18px;
+}
+#search-result-box table {
+  width: 100%;
+}
+#search-result-box table tr:hover {
+  background: #c6ecf3;
+}
+#search-result-box table th, #search-result-box table td {
+  vertical-align: top;
+  text-align: left;
+}
+#search-result-box table th.check {
+  width: 120px;
+}
+#search-result-box table th.image {
+  width: 135px;
+}
+#search-result-box table th.name {
+  width: 700px;
+}
+#search-result-box table th.price {
+  width: 250px;
+}
+
+/*# sourceMappingURL=market-price.css.map */

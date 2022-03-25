@@ -1,0 +1,52 @@
+{% extends 'layouts/admin-base.html' %}
+{% load static %}
+
+{% block page-css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/setting.css' %}?2021041601">
+{% endblock %}
+
+{% block page-js %}
+{% endblock %}
+
+{% block main-content %}
+    <article>
+        <h1>価格リスト - Apple製品</h1>
+
+        <div id="register-link-box">
+            <a href="/admin/setting/buy-price/apple/iphone/register" class="btn btn-info">商品登録</a>
+        </div>
+
+        <table id="news-list" class="table table-bordered">
+            <tr>
+                <th>名称</th>
+                <th class="w150">価格検索</th>
+                <th class="w250">買取価格</th>
+            </tr>
+
+            {% for row in product_list %}
+            <tr>
+                <td>
+                    {{ row.name }}
+                    {{ row.model_no }}
+                    {{ row.storage_capacity }}GB
+                    {{ row.color }}
+                    {% if row.sim_free != 'キャリア' %}
+                        {{ row.sim_free }}
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="" class="btn btn-sm btn-warning">価格検索</a>
+                </td>
+                <td>
+                    <span class="middle-line">
+                        <input name="text" class="form-control w200">
+                    </span>
+                    <span class="middle-line">
+                        円
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </article>
+{% endblock %}

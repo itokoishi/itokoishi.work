@@ -1,0 +1,159 @@
+{% extends 'layouts/admin-base.html' %}
+{% load static %}
+
+{% block page-css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/setting.css' %}?2021041601">
+{% endblock %}
+
+{% block page-js %}
+    <script>
+        $(function(){
+            $(document).on('click', '#register-bt', function(){
+                $('#register-form').submit();
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <article>
+        <h1>価格登録 - Apple製品</h1>
+
+        <!--== 登録タブ ===================-->
+        <ul class="nav nav-tabs" id="products-nav">
+            {% for row in product_type_list %}
+                <li class="nav-item">
+                    <a href="/admin/setting/buy-price/apple/{{ row.name_en }}/register"
+                       class="nav-link{% if row.name_en in request.path %} active{% endif %}">
+                        {{ row.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <section id="price-register">
+            <form id="register-form" method="post">
+                <table class="table table-bordered">
+                    <!--== 型番 ===================-->
+                    <tr>
+                        <td>型番</td>
+                        <td> {{ form.model_no }}</td>
+                    </tr>
+
+                    <!--== 名称 ===================-->
+                    <tr>
+                        <th>品名</th>
+                        <td>
+                            <span class="middle-line">{{ form.name }}</span>
+                            {% if form.name.errors %}
+                                <span class="note">{{ form.name.errors }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    {% if category == 'ipad' %}
+                        <!--== 世代 ===================-->
+                        <tr>
+                            <th>世代</th>
+                            <td>
+                                <span class="middle-line">{{ form.generation }}</span>
+                                <span class="middle-line">世代</span>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    {% if product_type == 'ipad' or product_type == 'macbook' or product_type == 'imac' or product_type == 'apple-watch' %}
+                        <!--== サイズ ===================-->
+                        <tr>
+                            <th>サイズ</th>
+                            <td>
+                                <span class="middle-line">{{ form.size }}</span>
+                                <span class="middle-line">
+                                {% if product_type == 'apple-watch' %}
+                                    mm
+                                    <input type="hidden" name="size_extension" value="mm" />
+                                {% else %}
+                                    インチ
+                                    <input type="hidden" name="size_extension" value="mm" />
+                                {% endif %}
+                            </span>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    {% if product_type == 'macbook' or product_type == 'imac' or product_type == 'desktop' %}
+                        <!--== メモリ ===================-->
+                        <tr>
+                            <th>メモリ</th>
+                            <td>
+                                <span class="middle-line">{{ form.memory }}</span>
+                                <span class="middle-line">GB</span>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    {% if product_type == 'macbook' or product_type == 'imac' or product_type == 'desktop' %}
+                        <!--== CPU ===================-->
+                        <tr>
+                            <th>CPU</th>
+                            <td>
+                                <span class="middle-line">{{ form.cpu }}</span>
+                                <span class="middle-line">{{ form.frequency_band }}</span>
+                                <span class="middle-line">GHz</span>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    <!--== ストレージ容量 ===================-->
+                    {% if product_type == 'iphone' or product_type == 'ipad' or product_type == 'macbook' or product_type == 'imac' or product_type == 'desktop' %}
+                        <tr>
+                            <th>ストレージ容量</th>
+                            <td>
+                                {% if product_type == 'macbook' or product_type == 'imac' or product_type == 'desktop' %}
+                                    <span class="middle-line">{{ form.storage_type }}</span>
+                                {% endif %}
+                                <span class="middle-line">{{ form.storage_capacity }}</span>
+                                <span class="middle-line">GB</span>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    {% if category == 'macbook' %}
+                        <!--== キーボード配列 ===================-->
+                        <tr>
+                            <th>キーボード配列</th>
+                            <td>
+                                {{ form.keyboard_array }}
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    <!--== SIMフリー ===================-->
+                    {% if product_type == 'iphone' or product_type == 'ipad' %}
+                        <tr>
+                            <th>SIMフリー</th>
+                            <td>
+                                {{ form.sim_free }}
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    <!--== 色 ===================-->
+                    <tr>
+                        <th>色</th>
+                        <td>{{ form.color }}</td>
+                    </tr>
+                </table>
+
+                <input type="hidden" name="category_id" value="{{ category_id }}">
+                <input type="hidden" name="product_type_id" value="{{ product_type_id }}">
+                {% csrf_token %}
+
+                <div id="register-bt-box">
+                    <a href="" class="btn btn-sm btn-success" id="register-bt">登録する</a>
+                </div>
+            </form>
+        </section>
+    </article>
+{% endblock %}

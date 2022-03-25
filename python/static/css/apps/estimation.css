@@ -1,0 +1,47 @@
+#search-link-box {
+  margin: 0 0 10px 0;
+}
+
+#estimation-list table {
+  width: 750px;
+}
+#estimation-list table th#bt-box {
+  width: 150px;
+}
+
+#estimation-register .checkbox input[type=checkbox].custom-checkbox:checked + .icons {
+  color: #4d90fe;
+}
+#estimation-register table {
+  width: 100%;
+}
+#estimation-register table tr#network-limits {
+  display: none;
+}
+#estimation-register table th {
+  width: 180px;
+}
+#estimation-register table td .item-content {
+  margin: 0 0 10px 0;
+}
+#estimation-register table td .item-content.last {
+  margin: 0;
+}
+#estimation-register table td .item-content:last-child {
+  border-bottom: none;
+  padding: 0;
+}
+#estimation-register table td .item-content .item-title {
+  font-size: 16px;
+}
+#estimation-register table td input[name=button_position],
+#estimation-register table td input[name=touch_panel_position],
+#estimation-register table td textarea[name=shortage_item],
+#estimation-register table td input[name=scratch_mini_position],
+#estimation-register table td input[name=scratch_middle_position],
+#estimation-register table td input[name=scratch_big_position] {
+  display: none;
+  margin: 10px 0 0 0;
+}
+
+/*# sourceMappingURL=estimation.css.map */

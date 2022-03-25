@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/* -------------------------------------
+ ニュースリスト
+------------------------------------- */
+#register-bt {
+  text-align: right;
+  margin: 0 0 20px 0;
+}
+
+#news-list {
+  width: 100%;
+
+  th {
+    &#time {
+      width: 200px;
+    }
+
+    &#type {
+      width: 200px;
+    }
+
+    &#title {
+      max-width: 700px;
+    }
+
+    &#bt-box {
+      width: 150px;
+    }
+  }
+}
+
+/* -------------------------------------
+ ニュース登録
+------------------------------------- */
+#register-bt-box {
+  text-align: center;
+}

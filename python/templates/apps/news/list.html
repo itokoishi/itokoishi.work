@@ -1,0 +1,72 @@
+{% extends 'layouts/admin-base.html' %}
+{% load static %}
+
+{% block page-css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/news.css' %}?2021041601">
+{% endblock %}
+
+{% block page-js %}
+    <script>
+        $(document).on('click', '.delete-modal-bt', function () {
+            let id = $(this).data('id');
+            $('#delete-news-modal').find('input[name="news_id"]').val(id);
+            $('#delete-news-modal').remodal().open();
+            return false;
+        });
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <article>
+        <h1>ニュース一覧</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <div id="register-link-box">
+            <a href="/admin/news/register" class="btn btn-warning">新規登録</a>
+        </div>
+
+        <table id="news-list" class="table table-bordered">
+            <tr>
+                <th id="time">日時</th>
+                <th id="type">ショップ項目</th>
+                <th id="title">タイトル</th>
+                <th id="bt-box"></th>
+            </tr>
+
+            {% for row in news_list %}
+                <tr>
+                    <td>{{ row.register_time }}</td>
+                    <td>
+                        {% if not row.shop_type_name %}
+                            全てのショップ項目
+                        {% else %}
+                            {{ row.shop_type_name }}
+                        {% endif %}
+                    </td>
+                    <td>{{ row.title }}</td>
+                    <td>
+                        <a href="/admin/news/{{ row.id }}/modify" class="btn btn-info btn-xs">編集</a>
+                        <a href="" class="btn btn-danger btn-xs delete-modal-bt" data-id="{{ row.id }}">削除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </article>
+
+    <section class="remodal" data-remodal-id="delete-news-modal" id="delete-news-modal"
+             data-remodal-options="hashTracking:false">
+        <h1>ニュース削除</h1>
+        <p>ニュースを削除しますか？</p>
+        <form method="post" id="delete-news" action="/admin/news/list/delete">
+            {% csrf_token %}
+            <input type="hidden" name="news_id" value=""/>
+            <button data-remodal-action="cancel" class="remodal-cancel">取り消し</button>
+            <button data-remodal-action="submit" class="remodal-confirm">削除</button>
+        </form>
+    </section>
+{% endblock %}

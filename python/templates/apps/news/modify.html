@@ -1,0 +1,61 @@
+{% extends 'layouts/admin-base.html' %}
+{% load static %}
+
+{% block page-css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/news.css' %}?2021032902">
+{% endblock %}
+
+{% block page-js %}
+    <script>
+        $(document).on('click', '#register-bt', function(){
+            $('#register-form').submit();
+            return false;
+        });
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <article>
+        <h1>ニュース登録</h1>
+
+        <form method="post" id="register-form">
+        <table id="news-register" class="table table-bordered">
+            <tr>
+                <th>項目</th>
+                <td>
+                    {{ form.shop_type }}
+                    {% if form.shop_type.errors %}
+                        <span class="note">{{ form.shop_type.errors }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <th>タイトル</th>
+                <td>
+                    {{ form.title }}
+                    {% if form.title.errors %}
+                        <span class="note">{{ form.title.errors }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <th>メッセージ</th>
+                <td>
+                    {{ form.message }}
+                    {% if form.message.errors %}
+                        <span class="note">{{ form.message.errors }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
+        <div id="register-bt-box">
+            <input type="hidden" name="shop_id" value="{{ news_id }}">
+            {% csrf_token %}
+            <a href="" class="btn btn-success" id="register-bt">登録する</a>
+        </div>
+        </form>
+    </article>
+{% endblock %}

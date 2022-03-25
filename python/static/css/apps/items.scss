@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+/* -------------------------------------
+フォーム項目
+------------------------------------- */
+#form-item-register{
+  table{
+    width: 100%;
+
+    th{
+      width: 150px;
+    }
+
+    td{
+      #form-item-list{
+
+        #first-input{
+          margin: 0 0 10px 0;
+        }
+
+        span{
+          margin: 0 10px 10px 0;
+        }
+      }
+    }
+  }
+}

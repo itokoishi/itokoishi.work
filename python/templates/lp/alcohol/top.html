@@ -1,0 +1,289 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>新宿 歌舞伎町でお酒の高価買取なら、BUY SELL MALL(バイセルモール)</title>
+    <meta name="description"
+          content="新宿 歌舞伎町でアルコールの効果買取を行っている、BUY SELL MALL(バイセルモール)のホームページです。部屋に眠っているお酒、余ったお酒なんでも査定いたします。">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!--== CSS ===================-->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lp/common.css' %}?2021033106">
+    <link rel="stylesheet" href="{% static 'css/lp/alcohol/top.css' %}?2021033106">
+
+    <!--== JS ===================-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(() => {
+            /* -------------------------------------
+            main アップ
+            ------------------------------------- */
+            $('main').attr('class', 'slide-up-active');
+
+            /* -------------------------------------
+            ハンバーガーメニュー
+            ------------------------------------- */
+            $(document).on('click', '#hamburger-btn', function () {
+                console.log($(this).attr('id'));
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $('.btn-line01').attr('class', 'line line-nav01');
+                    $('.btn-line02').attr('class', 'line line-nav02');
+                    $('.btn-line03').attr('class', 'line line-nav03');
+                    $('#menu').attr('class', 'menu-close');
+                } else {
+                    $(this).addClass('active');
+                    $('.line-nav01').attr('class', 'line btn-line01');
+                    $('.line-nav02').attr('class', 'line btn-line02');
+                    $('.line-nav03').attr('class', 'line btn-line03');
+                    $('#menu').attr('class', 'menu-open');
+                }
+                return false
+            });
+
+            $(window).scroll(function () {
+                const wHeight = $(window).height();
+                const scrollAmount = $(window).scrollTop();
+
+                $('.scrollanime').each(function () {
+                    const targetPosition = $(this).offset().top;
+                    if (scrollAmount > targetPosition - wHeight + 60) {
+                        $(this).addClass("fade-in-down downup");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+<!--== ヘッダー ===================-->
+<header class="header">
+    <h1>
+        <a href="/lp/alcohol">
+            <img src="{% static 'images/lp/alcohol/sp_header_logo.png' %}?2021033101" alt="BUY SELL MALL (バイセルモール)">
+        </a>
+    </h1>
+
+    <p id="header-text">
+        お酒の高額買取なら<br>
+        バイセルモール
+    </p>
+
+    <!--ハンバーガーメニューのボタン-->
+    <a href="" id="hamburger-btn">
+        <span class="line line-nav01"></span>
+        <span class="line line-nav02"></span>
+        <span class="line line-nav03"></span>
+        <p class="nav-text">MENU</p>
+    </a>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="">スケジュール</a></li>
+            <li><a href="">セラピストリスト</a></li>
+            <li><a href="">イベント</a></li>
+            <li><a href="">新着情報</a></li>
+            <li><a href="">スタッフコラム</a></li>
+            <li><a href="">店舗情報</a></li>
+            <li><a href="">システム</a></li>
+            <li><a href="">飲食メニュー</a></li>
+            <li><a href="">お問い合わせ</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!--== メインイメージ ===================-->
+<div id="main-image" class="fade-in-down downup">
+    <img src="{% static 'images/lp/alcohol/main.jpg' %}?2021033101"
+         alt="家に眠ったお酒、閉店で余ったお酒、家飲みで余ったお酒…等々当店では何でも１本から買取いたします。">
+
+    <!-- リンクボタン -->
+    <ul id="link-bt">
+        <li>
+            <a href="" id="contact">ご相談<br>
+                お問合せ<br>
+                <img src="{% static 'images/lp/contact_ico.png' %}?2021033101" alt="お酒買取に関するお問い合わせを受け付けています。"
+                     width="30">
+            </a>
+        </li>
+        <li>
+            <a href="" id="estimation">簡易<br>
+                見積もり<br>
+                <img src="{% static 'images/lp/estimation_ico.png' %}?2021033101" alt="お酒買取の簡易見積りならこちら。" width="30">
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<main>
+    <!--== リンクリスト ===================-->
+    <section id="link-list" class="fade-in-down downup">
+        <ul>
+            <li><a href="">買取依頼</a></li>
+            <li><a href="">初回の方</a></li>
+            <li><a href="">価格一覧</a></li>
+        </ul>
+    </section>
+
+    <!--== 買取のカテゴリ ===================-->
+    <section id="buy-category" class="fade-in-down downup">
+        <h1><span>買取のカテゴリ</span></h1>
+
+        <p>
+            当店では、ブランデー、ウィスキー、ワイン、シャンパン、
+            日本酒、焼酎、中国酒、古酒、洋酒といろいろなお酒を高額にて買取いたします。
+        </p>
+
+        <p>
+            お酒のことがわからない方でも、当店専門スタッフがご相談から承ります。
+            家に眠ったお酒、閉店で余ったお酒、家飲みで余ったお酒…等々当店では何でも１本から買取いたしますので、
+            安心してお問い合わせください。
+        </p>
+    </section>
+
+    <nav class="scrollanime">
+        <ul id="category-list" class="scrollanime">
+            <li><a href="">ウィスキー</a></li>
+            <li><a href="">ブランデー</a></li>
+            <li><a href="">ワイン</a></li>
+            <li><a href="">シャンパン</a></li>
+            <li><a href="">日本酒</a></li>
+            <li><a href="">焼酎</a></li>
+        </ul>
+    </nav>
+
+    <!--== WEB簡易見積り ===================-->
+    <div id="buy-banner" class="scrollanime">
+        <img src="{% static 'images/lp/alcohol/buy_banner.jpg' %}" alt="自身を持った買取価格">
+        <a href="">WEB簡易見積り</a>
+    </div>
+
+    <!--== お知らせ情報 ===================-->
+    <section id="info" class="scrollanime">
+        <h1><span>お知らせ情報</span></h1>
+
+        <dl>
+            <dt>2021年01月10日</dt>
+            <dd>
+                緊急事態宣言を受け、当店の受付時間を以下のように変更いたしました。
+                返事まで時間がかかる場合がございますので、ご理解ください。
+                2021年02月08日から03月28日まで
+                受付時間 10時から17時
+            </dd>
+
+
+            <dt>2021年03月10日</dt>
+            <dd>
+                本日、コニャック「カミュ キュヴェ3.140」の買取を行いました。
+                <p class="price"><span>買取価格：556,000円</span></p>
+            </dd>
+        </dl>
+    </section>
+
+    <section id="estimation-banner" class="scrollanime">
+        <img src="{% static 'images/lp/estimation_banner.jpg' %}?2021033101">
+    </section>
+
+    <!--== 当店が選ばれる理由 ===================-->
+    <section id="reason-text" class="scrollanime">
+        <h1>当店が選ばれる理由</h1>
+
+        <div id="reason-content">
+            <p class="text">皆様にご愛顧いただき、誠に感謝しております。</p>
+
+            <div class="scrollanime">
+                <div class="reason-card">
+                    <h2>他社よりも高く買取ります</h2>
+                    <div class="ico">
+                        <img src="{% static 'images/lp/expensive_purchase.png' %}?2021033101">
+                    </div>
+                    <p>
+                        当店では、お客様が満足していただくことを第一としています。
+                        他店の買取価格が当店より１円でも高い場合は、
+                        更に高い価格でかいとりをさせていただきます。
+                    </p>
+                </div>
+
+                <p class="note">
+                    ※他店での確定したお見積り金額、もしくは、取引内容のわかるメール等が必要となります。
+                </p>
+            </div>
+
+            <div class="scrollanime">
+                <div class="reason-card">
+                    <h2>安心していただけるお取引</h2>
+                    <div class="ico">
+                        <img src="{% static 'images/lp/reassurance.png' %}">
+                    </div>
+                    <p>
+                        当店では、スタッフが最後まで責任を持って取引させていただきますので、安心してご利用いただけます。
+                        また、ご不安な方のために、出張にて取引も可能です。
+                    </p>
+                </div>
+
+                <p class="note">
+                    ※出張取引の場合、規定の数量もしくは買取金　額が必要となります。
+                </p>
+            </div>
+
+            <div class="scrollanime">
+                <div class="reason-card">
+                    <h2>当社が金額負担します</h2>
+                    <div class="ico">
+                        <img src="{% static 'images/lp/charge_burden.png' %}">
+                    </div>
+                    <p>
+                        当店では、お客様に負担がかからないよう、
+                        買取に必要な送料につきましては当社負担にて行っております。
+                    </p>
+                </div>
+
+                <p class="note">
+                    ※出張取引の場合、規定の数量もしくは買取金額が必要となります。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--== 当店について ===================-->
+    <section id="shop-info" class="scrollanime">
+        <h1><span>当店について</span></h1>
+        <p>
+            当サイトにお越しいただきありがとうございます。<br>
+            当社は、地域トップクラスの高額買取を行っております。
+            また、全国からの買取もできるよう、ネットでの買取強化を行っております。<br>
+            <br>
+            不要となるお酒がございましたら、1本からでも買取が可能です。ぜひ、お気軽にお問い合わせください。
+        </p>
+    </section>
+</main>
+
+<footer class="scrollanime" class="scrollanime">
+    <nav id="footer-nav">
+        <a href="">HOME</a>・
+        <a href="">お知らせ</a>・
+        <a href="">初めての方</a><br>
+        <a href="">買取依頼</a>・
+        <a href="">サイトマップ</a>・
+        <a href="">お問合せ</a>
+    </nav>
+
+    <div id="footer-category" class="scrollanime">
+        <p>買取カテゴリ</p>
+        <a href="">ウィスキー</a>・
+        <a href="">ブランデー</a>・
+        <a href="">ワイン</a><br>
+        <a href="">シャンパン</a>・
+        <a href="">日本酒</a>・
+        <a href="">焼酎</a>
+    </div>
+
+    <p id="copylight">@copy 2021 BUY SELL MALL</p>
+</footer>
+</body>
+</html>

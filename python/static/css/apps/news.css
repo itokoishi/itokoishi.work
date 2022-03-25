@@ -1,0 +1,33 @@
+@charset "UTF-8";
+/* -------------------------------------
+ ニュースリスト
+------------------------------------- */
+#register-bt {
+  text-align: right;
+  margin: 0 0 20px 0;
+}
+
+#news-list {
+  width: 100%;
+}
+#news-list th#time {
+  width: 200px;
+}
+#news-list th#type {
+  width: 200px;
+}
+#news-list th#title {
+  max-width: 700px;
+}
+#news-list th#bt-box {
+  width: 150px;
+}
+
+/* -------------------------------------
+ ニュース登録
+------------------------------------- */
+#register-bt-box {
+  text-align: center;
+}
+
+/*# sourceMappingURL=news.css.map */

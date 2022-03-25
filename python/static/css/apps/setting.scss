@@ -1,0 +1,31 @@
+#type-title {
+  font-size: 18px;
+}
+
+/* -------------------------------------
+ 買取価格
+------------------------------------- */
+#products-nav {
+  margin: 0 0 20px 0;
+}
+
+/*-- カテゴリリスト ---------------------*/
+#category-list {
+  width: 750px;
+
+  th#name {
+    width: 600px;
+  }
+
+  th#bt-box {
+    width: 100px;
+  }
+}
+
+#price-register {
+  width: 750px;
+
+  #register-bt-box {
+    text-align: center;
+  }
+}

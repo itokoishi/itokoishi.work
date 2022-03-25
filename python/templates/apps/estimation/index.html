@@ -1,0 +1,38 @@
+{% extends 'layouts/admin-base.html' %}
+{% load static %}
+
+{% block page-css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/estimation.css' %}?2021041902">
+{% endblock %}
+
+{% block page-js %}
+    <script>
+        $(function () {});
+    </script>
+{% endblock %}
+
+{% block main-content %}
+    <article>
+        <h1>買取査定</h1>
+
+        <div id="search-link-box">
+            <a href="/admin/market-price" class="btn btn-info btn-sm" target="_blank">査定価格検索</a>
+        </div>
+
+        <section id="estimation-list">
+            <table class="table table-bordered">
+                <tr>
+                    <th id="type">項目</th>
+                    <th id="bt-box"></th>
+                </tr>
+
+                <tr>
+                    <td>Apple製品</td>
+                    <td>
+                        <a href="/admin/estimation/apple" class="btn btn-success btn-xs">査定する</a>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </article>
+{% endblock %}
