@@ -50,7 +50,7 @@ class CommonController extends Controller
 
         $log_file = storage_path() . '/logs/access.log';
         $text = str_replace('/','', $this->_now_time . ' ' . request()->ip() . ' ' . request()->path() . PHP_EOL);
-
+       
         file_put_contents(
             $log_file,
             $text,
