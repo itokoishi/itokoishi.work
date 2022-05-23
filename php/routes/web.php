@@ -29,8 +29,10 @@ Route::resource('/log-out', LogoutController::class);
 Route::get('/image/staff/{param}', [ImageController::class, 'staff']);
 
 Route::middleware(['admin_auth'])->group(function () {
-    Route::get('/', [ProfileController::class, 'index']);
-    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::get('/', function(){
+        return redirect('/calender');
+    });
+//    Route::get('/profile', [ProfileController::class, 'index']);
     Route::resource('/calender', CalenderController::class);
     Route::resource('/shift', ShiftController::class);
     Route::resource('/staff/register', StaffRegister::class);

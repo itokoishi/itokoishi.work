@@ -40,7 +40,7 @@ class LoginController extends CommonController
             $password === config('app.admin_auth_pass')) {
 
             $request->session()->put('admin_auth', true);
-            return redirect('/profile');
+            return redirect('/calender');
         }
 
         /* -- パスワード処理 ---------------------*/
